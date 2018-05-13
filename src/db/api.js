@@ -1,5 +1,12 @@
-const foo = () => {
-  console.log('hey')
+/* eslint-disable import/prefer-default-export */
+import data from './data'
+
+function getData() {
+  return new Promise(resolve => {
+    setTimeout(() => {
+      resolve(data)
+    }, 1000)
+  })
 }
 
-export default foo
+export { getData }

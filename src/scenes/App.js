@@ -1,13 +1,16 @@
 import React, { Component } from 'react'
+import { getData } from 'db/api'
 import logo from './logo.svg'
 import './App.css'
 import './styles.css'
 
-import foo from 'db/api'
-
 class App extends Component {
+  foo = async () => {
+    const bar = await getData()
+    console.log(Object.entries(bar))
+  }
   render() {
-    foo()
+    this.foo()
 
     return (
       <div className="App">
