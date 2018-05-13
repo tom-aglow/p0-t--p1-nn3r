@@ -3,8 +3,12 @@ import logo from './logo.svg'
 import './App.css'
 import './styles.css'
 
+import foo from 'db/api'
+
 class App extends Component {
   render() {
+    foo()
+
     return (
       <div className="App">
         <header className="App-header">
