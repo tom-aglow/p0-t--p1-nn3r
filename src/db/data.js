@@ -51,19 +51,19 @@ const data = {
     stats: {
       seen: {
         value: 420,
-        rate: 0.35,
+        rate: 0.15,
       },
       shares: {
         value: 23,
-        rate: 0.54,
+        rate: 0.35,
       },
       likes: {
         value: 110,
-        rate: 0.12,
+        rate: 0.89,
       },
       comments: {
         value: 7,
-        rate: 0.11,
+        rate: 0.67,
       },
     },
   },

@@ -1,0 +1,19 @@
+@import 'styles/vars.sass'
+
+$size: 20px
+$svg-radius: 16
+
+.PieChart
+  position: relative
+  width: $size
+  height: $size
+
+.PieChart__chart
+  transform: rotate(-90deg)
+  background: $color-fill-darkgrey
+  border-radius: 50%
+
+  circle
+    fill: $color-fill-darkgrey
+    stroke: $color-fill-black
+    stroke-width: calc(2 * #{$svg-radius})
