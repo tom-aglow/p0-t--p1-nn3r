@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 
 class PlanPage extends Component {
   render() {
-    return <div>PlanPage</div>
+    return <div>PlanPageFoo</div>
   }
 }
 
