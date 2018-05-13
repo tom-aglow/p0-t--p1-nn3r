@@ -19,6 +19,7 @@
     "eqeqeq": "off",
     "arrow-parens": ["error", "as-needed"],
     "no-use-before-define": ["error", { "functions": false, "classes": true }],
-    "react/no-did-mount-set-state": "off"
+    "react/no-did-mount-set-state": "off",
+    "import/no-unresolved": [2, { "ignore": ["components", "db", "styles"] }]
   }
 }
