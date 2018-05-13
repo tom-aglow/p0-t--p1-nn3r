@@ -20,6 +20,7 @@
     "arrow-parens": ["error", "as-needed"],
     "no-use-before-define": ["error", { "functions": false, "classes": true }],
     "react/no-did-mount-set-state": "off",
-    "import/no-unresolved": [2, { "ignore": ["components", "db", "styles"] }]
+    "import/no-unresolved": [2, { "ignore": ["components", "db", "styles"] }],
+    "import/extensions": [2, { "js": "never" }]
   }
 }

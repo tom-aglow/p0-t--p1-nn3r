@@ -2,7 +2,7 @@ import React from 'react'
 import Menu from 'components/Menu'
 
 const Page = props => (
-  <div>
+  <div className="Page">
     <Menu />
     {props.children()}
   </div>
