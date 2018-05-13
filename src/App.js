@@ -1,6 +1,6 @@
 import React from 'react'
 import Page from './components/Page'
-import PlanPage from './components/PlanPage'
+import PlanPage from './components/PlanPage/container'
 
 const App = () => <Page>{() => <PlanPage />}</Page>
 
