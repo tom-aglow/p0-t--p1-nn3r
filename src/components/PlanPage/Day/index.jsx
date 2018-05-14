@@ -1,12 +1,19 @@
 import React from 'react'
 
 import Stats from './Stats'
+import Post from './Post'
 import { getWeekdayName, formatDay } from './utils'
 import './styles.css'
 
 const Day = ({ posts, stats, day: dayStr }) => {
   const day = new Date(dayStr)
-  console.log(day)
+
+  const mapToPostComponent = key => (
+    <Post {...posts[key]} key={key} time={key} />
+  )
+
+  const renderPosts = () => Object.keys(posts).map(mapToPostComponent)
+
   return (
     <section className="Day">
       <header className="Day__header">
@@ -16,8 +23,7 @@ const Day = ({ posts, stats, day: dayStr }) => {
         </h1>
         {stats && <Stats params={stats} />}
       </header>
-      <article className="Post">{posts[0].text}</article>
-      <article className="Post">{posts[1].text}</article>
+      <div className="Day__content">{renderPosts()}</div>
     </section>
   )
 }
