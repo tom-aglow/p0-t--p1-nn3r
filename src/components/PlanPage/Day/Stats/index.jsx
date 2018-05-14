@@ -2,18 +2,8 @@ import React from 'react'
 import PropTypes from 'prop-types'
 
 import PieChart from './PieChart'
-import seenIcon from './seen-icon'
-import shareIcon from './share-icon'
-import commentIcon from './comment-icon'
-import likeIcon from './like-icon'
+import icons from './icons'
 import './styles.css'
-
-const icons = {
-  seen: seenIcon,
-  shares: shareIcon,
-  comments: commentIcon,
-  likes: likeIcon,
-}
 
 const Stats = ({ params }) => {
   const mapToParamElement = key => (
