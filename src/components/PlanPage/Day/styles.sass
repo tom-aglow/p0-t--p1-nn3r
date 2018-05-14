@@ -21,3 +21,30 @@
 .Day__content
   display: flex
   flex-wrap: wrap
+
+
+//  Enter/Leave animations
+
+.__tile__
+  &.fade-exit
+    opacity: 1
+
+  &.fade-exit-active
+    opacity: 0.01
+    transition: opacity 500ms ease-in
+
+//   &.fade-enter
+//     animation: none
+//     opacity: 0.5
+//     transform: translateY(-30px)
+//
+//   &.fade-enter-active
+//     animation: none
+//     opacity: 1
+//     transform: translateY(0)
+//     transition: all 5000ms ease-in
+//
+//   &.fade-enter-done
+//     animation: none
+//
+//
