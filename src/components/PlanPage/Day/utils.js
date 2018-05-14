@@ -46,6 +46,15 @@ function reduceToSlotsObject(obj, item, index) {
   return { ...obj, [item]: { type: 'slot', text: `${NUMERALS[index]} slot` } }
 }
 
+function getNewPostObj() {
+  return {
+    new: {
+      type: 'slot',
+      text: 'Shedule post on this day',
+    },
+  }
+}
+
 function sortStringsAsc(a, b) {
   return a.localeCompare(b)
 }
@@ -56,4 +65,5 @@ export {
   reduceToSlotsObject,
   sortStringsAsc,
   formatTime,
+  getNewPostObj,
 }

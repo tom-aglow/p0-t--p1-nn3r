@@ -1,13 +1,13 @@
 import React from 'react'
+import PropTypes from 'prop-types'
+import Icon from 'components/PlanPage/shared/Icon'
 
 import { formatTime } from '../utils'
 import icons from './icons'
 import './styles.css'
 
 const Post = ({ media, text, time }) => {
-  const mapToIconElement = name => (
-    <div dangerouslySetInnerHTML={{ __html: icons[name] }} key={name} />
-  )
+  const mapToIconElement = name => <Icon svg={icons[name]} key={name} />
 
   const renderMediaIcon = () => media.map(mapToIconElement)
 
@@ -20,6 +20,12 @@ const Post = ({ media, text, time }) => {
       <p>{text}</p>
     </article>
   )
+}
+
+Post.propTypes = {
+  media: PropTypes.PropTypes.arrayOf(PropTypes.string).isRequired,
+  time: PropTypes.string.isRequired,
+  text: PropTypes.string.isRequired,
 }
 
 export default Post

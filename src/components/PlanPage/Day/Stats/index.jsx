@@ -1,5 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import Icon from 'components/PlanPage/shared/Icon'
 
 import PieChart from './PieChart'
 import icons from './icons'
@@ -9,12 +10,7 @@ const Stats = ({ params }) => {
   const mapToParamElement = key => (
     <div className="Stats__param" key={key}>
       <PieChart value={params[key].rate * 100}>
-        {() => (
-          <span
-            className="Stats__icon"
-            dangerouslySetInnerHTML={{ __html: icons[key] }}
-          />
-        )}
+        {() => <Icon className="Stats__icon" svg={icons[key]} />}
       </PieChart>
       <div className="Stats__value">{params[key].value}</div>
     </div>

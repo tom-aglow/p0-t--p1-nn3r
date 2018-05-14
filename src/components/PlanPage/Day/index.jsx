@@ -9,6 +9,7 @@ import {
   formatDay,
   reduceToSlotsObject,
   sortStringsAsc,
+  getNewPostObj,
 } from './utils'
 import './styles.css'
 
@@ -16,7 +17,8 @@ const Day = ({ posts, stats, day: dayStr, slots }) => {
   const day = new Date(dayStr)
 
   const slotsObj = slots.reduce(reduceToSlotsObject, {})
-  const slotsAndPosts = { ...slotsObj, ...posts }
+  const newPostObj = getNewPostObj()
+  const slotsAndPosts = { ...slotsObj, ...posts, ...newPostObj }
 
   const mapToSlotOrPost = key => {
     const Component = slotsAndPosts[key].type === 'slot' ? Slot : Post
@@ -45,12 +47,14 @@ const Day = ({ posts, stats, day: dayStr, slots }) => {
 Day.defaultProps = {
   stats: null,
   slots: ['10:00', '15:00', '19:00'],
+  posts: null,
 }
 
 Day.propTypes = {
   day: PropTypes.string.isRequired,
   stats: PropTypes.object, // eslint-disable-line react/forbid-prop-types
   slots: PropTypes.array, // eslint-disable-line react/forbid-prop-types
+  posts: PropTypes.object, // eslint-disable-line react/forbid-prop-types
 }
 
 export default Day
