@@ -51,7 +51,10 @@ function parseTime(timeStr) {
 }
 
 function reduceToSlotsObject(obj, item, index) {
-  return { ...obj, [item]: { type: 'slot', text: `${NUMERALS[index]} slot` } }
+  return {
+    ...obj,
+    [item]: { type: 'slot', text: `${NUMERALS[index]} slot`, time: item },
+  }
 }
 
 function getNewPostObj() {
@@ -59,12 +62,25 @@ function getNewPostObj() {
     new: {
       type: 'slot',
       text: 'Shedule post on this day',
+      time: 'new',
     },
   }
 }
 
 function sortStringsAsc(a, b) {
   return a.localeCompare(b)
+}
+
+function reduceToTimeKey(posts) {
+  return function reducer(accObj, key) {
+    const obj = {
+      [posts[key].time]: {
+        id: key,
+        ...posts[key],
+      },
+    }
+    return { ...accObj, ...obj }
+  }
 }
 
 export {
@@ -74,4 +90,5 @@ export {
   sortStringsAsc,
   formatTime,
   getNewPostObj,
+  reduceToTimeKey,
 }

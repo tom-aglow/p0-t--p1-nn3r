@@ -11,6 +11,7 @@ import {
   reduceToSlotsObject,
   sortStringsAsc,
   getNewPostObj,
+  reduceToTimeKey,
 } from './utils'
 import './styles.css'
 
@@ -21,9 +22,10 @@ class Day extends Component {
 
   componentDidMount() {
     const { posts, slots } = this.props
+    const postsRemapped = Object.keys(posts).reduce(reduceToTimeKey(posts), {})
     const slotsObj = slots.reduce(reduceToSlotsObject, {})
     const newPostObj = getNewPostObj()
-    this.setState({ spots: { ...slotsObj, ...posts, ...newPostObj } })
+    this.setState({ spots: { ...slotsObj, ...postsRemapped, ...newPostObj } })
   }
 
   day = new Date(this.props.day)
@@ -32,17 +34,19 @@ class Day extends Component {
     const Element = this.state.spots[key].type === 'slot' ? Slot : Post
     return (
       <CSSTransition key={key} timeout={500} classNames="fade">
-        <Element {...this.state.spots[key]} key={key} time={key} />
+        <Element {...this.state.spots[key]} key={key} />
       </CSSTransition>
     )
   }
 
   addPost = () => {
     const d = new Date()
+    const time = `${d.getHours()}:${d.getSeconds()}`
     const foo = {
-      [`${d.getHours()}:${d.getSeconds()}`]: {
+      [time]: {
         media: ['facebook', 'twitter'],
         text: 'Bazzz',
+        time,
       },
     }
     this.setState(prevState => ({ spots: { ...prevState.spots, ...foo } }))
