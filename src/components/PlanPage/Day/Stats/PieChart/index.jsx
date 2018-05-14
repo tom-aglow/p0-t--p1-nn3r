@@ -5,7 +5,13 @@ import './styles.css'
 const PieChart = ({ value, children }) => (
   <div className="PieChart">
     <svg viewBox="0 0 32 32" className="PieChart__chart">
-      <circle r="16" cx="16" cy="16" strokeDasharray={`${value} 100`} />
+      <circle
+        r="16"
+        cx="16"
+        cy="16"
+        strokeWidth="32"
+        strokeDasharray={`${value} 100`}
+      />
     </svg>
     {children()}
   </div>

@@ -15,7 +15,7 @@ function formatDay(day) {
 }
 
 function formatTime(time) {
-  const date = new Date(`1970-01-01 ${time}`)
+  const date = parseTime(time)
   const options = { hour: '2-digit', minute: '2-digit' }
   return date.toLocaleTimeString('en-US', options)
 }
@@ -40,6 +40,14 @@ function dateDiffInDays(a, b) {
   const utc2 = Date.UTC(b.getFullYear(), b.getMonth(), b.getDate())
 
   return Math.floor((utc2 - utc1) / MS_PER_DAY)
+}
+
+function parseTime(timeStr) {
+  const date = new Date()
+  const time = timeStr.match(/(\d+)(?::(\d\d))?\s*(p?)/)
+  date.setHours(parseInt(time[1], 10) + (time[3] ? 12 : 0))
+  date.setMinutes(parseInt(time[2], 10) || 0)
+  return date
 }
 
 function reduceToSlotsObject(obj, item, index) {
