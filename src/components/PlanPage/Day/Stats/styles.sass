@@ -8,7 +8,8 @@ $size: 20px
 .Stats__param
   display: flex
   align-items: center
-  margin-left: $margin-hor-sm
+  &:not(:first-child)
+    margin-left: $margin-hor-sm
 
 .Stats__value
   margin-left: $margin-hor-xs

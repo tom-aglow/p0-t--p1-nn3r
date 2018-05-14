@@ -6,37 +6,40 @@ $animation-time: 0.5s
   background-color: $color-fill-lightblack
   min-width: 180px
   width: 20%
-  @media screen and (max-width: $bp-screen-small)
+  z-index: 10
+  @media screen and (max-width: $bp-screen-md)
     width: 100%
-    height: 100%
-    position: absolute
+    height: 100vh
+    position: fixed
     top: 0
     left: -100%
     transition: all $animation-time ease-in-out
 
-@media screen and (max-width: $bp-screen-small)
+@media screen and (max-width: $bp-screen-md)
   .Menu-open
     left: 0
 
 
 
 .Menu__toggler
-  @media screen and (min-width: $bp-screen-small)
-    display: none
-  width: $toggler-size
-  height: $toggler-size
-  background-color: $color-fill-lightblack
-  position: absolute
-  top: calc(50% - #{$toggler-size} / 2)
-  right: calc(-#{$toggler-size} / 2 + 10px)
-  border-radius: 50%
-  transition: all $animation-time ease-in-out
-  transition-delay: $animation-time
+  display: none
+  @media screen and (max-width: $bp-screen-md)
+    display: block
+    width: $toggler-size
+    height: $toggler-size
+    background-color: $color-fill-lightblack
+    position: absolute
+    top: calc(50% - #{$toggler-size} / 2)
+    right: calc(-#{$toggler-size} / 2 + 10px)
+    border-radius: 50%
+    transition: all $animation-time ease-in-out
+    transition-delay: $animation-time
+    z-index: 10
 
-  background:
-    image: url('./chevron-right.svg')
-    repeat: no-repeat
-    position: 85% 50%
+    background:
+      image: url('./chevron-right.svg')
+      repeat: no-repeat
+      position: 85% 50%
 
 .Menu__toggler-open
   transform: rotate(180deg)

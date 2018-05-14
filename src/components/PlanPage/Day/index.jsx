@@ -71,10 +71,10 @@ class Day extends Component {
     return (
       <section className="Day">
         <header className="Day__header">
-          <h1 className="Day__title">
-            {formatDay(this.day)}{' '}
-            <span className="Day__dayname">{getWeekdayName(this.day)}</span>
-          </h1>
+          <div className="Day__title">
+            <h1 className="Day__name">{formatDay(this.day)}</h1>
+            <span className="Day__weekday">{getWeekdayName(this.day)}</span>
+          </div>
           {stats && <Stats params={stats} />}
         </header>
         <TransitionGroup className="Day__content">
