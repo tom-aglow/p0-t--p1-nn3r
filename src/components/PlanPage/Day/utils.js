@@ -1,4 +1,5 @@
 const MS_PER_DAY = 1000 * 60 * 60 * 24
+const NUMERALS = ['first', 'second', 'third']
 
 function getWeekdayName(day) {
   const options = { weekday: 'long' }
@@ -11,6 +12,12 @@ function formatDay(day) {
   if (isYesterday(day)) return 'Yesterday'
   const options = { month: 'long', day: 'numeric' }
   return day.toLocaleDateString('en-US', options)
+}
+
+function formatTime(time) {
+  const date = new Date(`1970-01-01 ${time}`)
+  const options = { hour: '2-digit', minute: '2-digit' }
+  return date.toLocaleTimeString('en-US', options)
 }
 
 function isToday(day) {
@@ -35,4 +42,18 @@ function dateDiffInDays(a, b) {
   return Math.floor((utc2 - utc1) / MS_PER_DAY)
 }
 
-export { getWeekdayName, formatDay }
+function reduceToSlotsObject(obj, item, index) {
+  return { ...obj, [item]: { type: 'slot', text: `${NUMERALS[index]} slot` } }
+}
+
+function sortStringsAsc(a, b) {
+  return a.localeCompare(b)
+}
+
+export {
+  getWeekdayName,
+  formatDay,
+  reduceToSlotsObject,
+  sortStringsAsc,
+  formatTime,
+}

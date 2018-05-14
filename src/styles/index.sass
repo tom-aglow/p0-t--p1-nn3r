@@ -11,6 +11,8 @@
   src: url("../fonts/STM75.otf") format("opentype")
 
 
+// COMMON STYLES
+
 body
   margin: 0
   padding: 0
@@ -18,3 +20,15 @@ body
   background-color: $color-fill-lightgrey
   color: $color-text-black
   box-sizing: border-box
+
+
+// SHARED CLASSES
+$tile-size: calc(200px - #{$padding-hor-sm})
+
+.__tile__
+    width: $tile-size
+    height: $tile-size
+    padding: $padding-hor-sm
+    border: 1px solid $color-fill-mediumgrey
+    margin: -1px 0 0 -1px
+    cursor: pointer

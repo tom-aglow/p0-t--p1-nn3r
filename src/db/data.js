@@ -1,42 +1,42 @@
 const data = {
   '2018-05-13': {
     posts: {
-      '13:00 +0300': {
+      '13:00': {
         media: ['facebook', 'twitter'],
         text:
           'Mauris varius tortor in sem laoreet, sed dictum quam finibus. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla arcu enim, malesuada ac interdum eget, cursus vel mi. Suspendisse lacinia nisl tincidunt, tristique metus non, vulputate erat.',
       },
-      '13:01 +0300': {
+      '09:01': {
         media: ['facebook', 'twitter'],
         text:
           'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla arcu enim, malesuada ac interdum eget, cursus vel mi. Suspendisse lacinia nisl tincidunt, tristique metus non, vulputate erat.',
       },
-      '13:02 +0300': {
+      '13:10': {
         media: ['facebook', 'twitter'],
         text:
           'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla arcu enim, malesuada ac interdum eget, cursus vel mi. Suspendisse lacinia nisl tincidunt, tristique metus non, vulputate erat.',
       },
-      '13:03 +0300': {
+      '13:03': {
         media: ['facebook', 'twitter'],
         text:
           'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla arcu enim, malesuada ac interdum eget, cursus vel mi. Suspendisse lacinia nisl tincidunt, tristique metus non, vulputate erat.',
       },
-      '13:04 +0300': {
+      '13:04': {
         media: ['facebook', 'twitter'],
         text:
           'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla arcu enim, malesuada ac interdum eget, cursus vel mi. Suspendisse lacinia nisl tincidunt, tristique metus non, vulputate erat.',
       },
-      '13:05 +0300': {
+      '13:05': {
         media: ['facebook', 'twitter'],
         text:
           'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla arcu enim, malesuada ac interdum eget, cursus vel mi. Suspendisse lacinia nisl tincidunt, tristique metus non, vulputate erat.',
       },
-      '13:06 +0300': {
+      '13:06': {
         media: ['facebook', 'twitter'],
         text:
           'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla arcu enim, malesuada ac interdum eget, cursus vel mi. Suspendisse lacinia nisl tincidunt, tristique metus non, vulputate erat.',
       },
-      '17:00 +0300': {
+      '17:00': {
         media: ['facebook', 'instagram', 'googleplus'],
         text:
           'Aenean quis eleifend ligula. Sed bibendum bibendum nunc in egestas. Donec euismod est porta arcu sodales, eget molestie dolor malesuada.',
@@ -63,12 +63,12 @@ const data = {
   },
   '2018-05-14': {
     posts: {
-      '10:00 +0300': {
+      '10:00': {
         media: ['facebook', 'twitter'],
         text:
           'Nullam consectetur non leo nec semper. Sed nisi nisl, ullamcorper a velit nec, lobortis egestas enim.',
       },
-      '17:00 +0300': {
+      '17:00': {
         media: ['facebook', 'instagram', 'googleplus'],
         text:
           'Duis consequat urna a viverra molestie. Nullam interdum justo risus. Nullam eget quam convallis, molestie ex ac, rhoncus dolor.',
