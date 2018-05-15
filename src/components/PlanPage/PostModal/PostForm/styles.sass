@@ -5,8 +5,18 @@ $border-radius: 3px
 
 .PostForm__date-time
   display: flex
+  flex-wrap: wrap
   align-items: center
   margin-bottom: $margin-ver-sm
+
+  label
+    @media screen and (max-width: $bp-screen-md)
+      flex-basis: 100%
+      margin-bottom: $margin-ver-xs
+    @media screen and (max-width: 550px)
+      & + div
+        width: 100%
+        margin-bottom: $margin-ver-xs
 
 .PostForm__date,
 .PostForm__hours,
@@ -34,6 +44,10 @@ $border-radius: 3px
 .PostForm__date
   margin-left: $margin-hor-sm
   margin-right: $margin-hor-xs
+  @media screen and (max-width: $bp-screen-md)
+    margin-left: 0
+
+
 
 .react-datepicker-popper
   z-index: 2
@@ -80,13 +94,18 @@ $border-radius: 3px
   width: calc(100% - 2 * #{$padding-hor-md} - 2 * 1px)
   height: 170px
   margin-top: -1px
+  border-radius: 0
   margin-bottom: $margin-ver-xl
 
 
 
 //  BUTTONS
+.PostForm__buttons
+  display: flex
+  justify-content: space-between
 
-.PostForm__button
+.PostForm__button-save,
+.PostForm__button-delete
   -webkit-appearance: none
   border: none
   border-radius: $border-radius
@@ -96,12 +115,21 @@ $border-radius: 3px
   text-transform: uppercase
   cursor: pointer
   transition: all 0.3s ease-out
+  @media screen and (max-width: $bp-screen-xs)
+    padding: $padding-hor-xs $padding-hor-sm
 
   &:hover
     box-shadow: inset 0px -60px 0px 0px rgba(0,0,0,0.1)
 
+.PostForm__button-delete
+  background-color: $color-fill-red
+  color: $color-fill-white
+  box-shadow: inset 0px -3px 0px 0px rgba(130, 4, 20,0.2)
+  &:hover
+    box-shadow: inset 0px -60px 0px 0px rgba(130, 4, 20, 0.2)
+
 //  LOADING ANIMATION
-.PostForm__button
+.PostForm__button-save
   position: relative
   overflow: hidden
 

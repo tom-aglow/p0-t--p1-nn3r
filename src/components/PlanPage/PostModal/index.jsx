@@ -27,7 +27,11 @@ class PostModal extends Component {
           {/* header */}
           <div className="PostModal__header">
             <p className="PostModal__title">New post</p>
-            <Icon svg={icons.cross} onClick={this.closeModal} />
+            <Icon
+              svg={icons.cross}
+              onClick={this.closeModal}
+              className="PostModal__btn-close"
+            />
           </div>
 
           {/* form */}

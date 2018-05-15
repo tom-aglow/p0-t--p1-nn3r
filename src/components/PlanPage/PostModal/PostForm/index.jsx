@@ -66,6 +66,7 @@ class PostForm extends Component {
             minDate={moment()}
             onChange={this.handleDateChange}
             dateFormat="MMM, DD, ddd"
+            type="date"
           />
 
           <span>at</span>
@@ -95,9 +96,12 @@ class PostForm extends Component {
         />
 
         {/* buttons */}
-        <button className="PostForm__button">
-          Schedule Post<div className="bg" />
-        </button>
+        <div className="PostForm__buttons">
+          <button className="PostForm__button-save">
+            Schedule Post<div className="bg" />
+          </button>
+          <button className="PostForm__button-delete">Delete Post</button>
+        </div>
       </form>
     )
   }
