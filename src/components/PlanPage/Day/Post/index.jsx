@@ -7,12 +7,18 @@ import { formatTime } from '../utils'
 import icons from './icons'
 import './styles.css'
 
-const Post = ({ media, text, time }) => {
+const Post = ({ media, text, time, day }) => {
   const mapToIconElement = name => <Icon svg={icons[name]} key={name} />
 
   const renderMediaIcon = () => media.map(mapToIconElement)
 
-  const options = { type: 'post', text, time }
+  const options = {
+    type: 'post',
+    text,
+    time,
+    media,
+    day,
+  }
 
   return (
     <Tile className="Post" options={options}>
@@ -33,6 +39,7 @@ Post.propTypes = {
   media: PropTypes.PropTypes.arrayOf(PropTypes.string).isRequired,
   time: PropTypes.string.isRequired,
   text: PropTypes.string.isRequired,
+  day: PropTypes.string.isRequired,
 }
 
 export default Post

@@ -34,7 +34,7 @@ class Day extends Component {
     const Element = this.state.spots[key].type === 'slot' ? Slot : Post
     return (
       <CSSTransition key={key} timeout={500} classNames="fade">
-        <Element {...this.state.spots[key]} key={key} />
+        <Element {...this.state.spots[key]} key={key} day={this.props.day} />
       </CSSTransition>
     )
   }

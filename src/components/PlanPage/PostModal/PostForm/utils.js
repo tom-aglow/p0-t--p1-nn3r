@@ -55,9 +55,26 @@ function mapToCheckboxComponent({ checkedMedia, Component, cb }) {
   }
 }
 
+function getHours(time) {
+  return time.slice(0, time.indexOf(':'))
+}
+
+function getMinutes(time) {
+  return time.slice(time.indexOf(':') + 1)
+}
+
+function filterOut(term) {
+  return function filterFn(item) {
+    return item !== term
+  }
+}
+
 export {
   renderHoursOptions,
   renderMinutesOptions,
   getIconPath,
   mapToCheckboxComponent,
+  getHours,
+  getMinutes,
+  filterOut,
 }

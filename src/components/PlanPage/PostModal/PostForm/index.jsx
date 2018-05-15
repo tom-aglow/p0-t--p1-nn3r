@@ -4,11 +4,15 @@ import DatePicker from 'react-datepicker'
 import 'react-datepicker/dist/react-datepicker.css'
 import moment from 'moment'
 
+import withPlanContext from 'components/PlanPage/withPlanContext'
 import Checkbox from './Checkbox'
 import {
   renderHoursOptions,
   renderMinutesOptions,
   mapToCheckboxComponent,
+  getHours,
+  getMinutes,
+  filterOut,
 } from './utils'
 import './styles.css'
 
@@ -20,9 +24,12 @@ moment.updateLocale('en', {
 
 class PostForm extends Component {
   state = {
-    date: moment(),
-    media: this.props.media,
-    text: '',
+    date: moment(this.props.plan.selectedPost.day),
+    media: this.props.plan.selectedPost.media || [],
+    text: this.props.plan.selectedPost.text || '',
+    time: this.props.plan.selectedPost.time || '',
+    hours: getHours(this.props.plan.selectedPost.time) || '00',
+    minutes: getMinutes(this.props.plan.selectedPost.time) || '00',
   }
 
   handleDateChange = date => {
@@ -30,15 +37,18 @@ class PostForm extends Component {
   }
 
   handleCheckboxChange = (media, state) => {
-    console.log(media, state)
+    if (state) {
+      this.setState(prevState => ({ media: [...prevState.media, media] }))
+    } else {
+      this.setState(prevState => ({
+        media: prevState.media.filter(filterOut(media)),
+      }))
+    }
   }
 
-  handleTimeChange = event => {
-    console.log(event.target.value)
-  }
-
-  handleTextChange = event => {
-    this.setState({ text: event.target.value })
+  handleInputChange = event => {
+    const inputName = event.target.className.split('__')[1]
+    this.setState({ [inputName]: event.target.value })
   }
 
   renderCheckboxes() {
@@ -72,13 +82,18 @@ class PostForm extends Component {
           <span>at</span>
 
           {/* time */}
-          <select className="PostForm__hours" onChange={this.handleTimeChange}>
+          <select
+            className="PostForm__hours"
+            value={this.state.hours}
+            onChange={this.handleInputChange}
+          >
             {renderHoursOptions()}
           </select>
 
           <select
             className="PostForm__minutes"
-            onChange={this.handleTimeChange}
+            value={this.state.minutes}
+            onChange={this.handleInputChange}
           >
             {renderMinutesOptions()}
           </select>
@@ -91,7 +106,7 @@ class PostForm extends Component {
         <textarea
           className="PostForm__text"
           value={text}
-          onChange={this.handleTextChange}
+          onChange={this.handleInputChange}
           placeholder="Text and links"
         />
 
@@ -109,12 +124,10 @@ class PostForm extends Component {
 
 PostForm.defaultProps = {
   allMedia: ['facebook', 'instagram', 'googleplus', 'twitter'],
-  media: ['facebook', 'instagram'],
 }
 
 PostForm.propTypes = {
   allMedia: PropTypes.array, // eslint-disable-line react/forbid-prop-types
-  media: PropTypes.array, // eslint-disable-line react/forbid-prop-types
 }
 
-export default PostForm
+export default withPlanContext(PostForm)

@@ -1,27 +1,25 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import Consumer from 'components/PlanPage/consumer'
+import withPlanContext from 'components/PlanPage/withPlanContext'
 import './styles.css'
 
-const Tile = ({ children, className, options }) => {
-  const handleClick = cb => () => {
-    cb(options)
-  }
+const Tile = withPlanContext(
+  ({ children, className, options, plan: { onTileClick } }) => {
+    const handleClick = () => {
+      onTileClick(options)
+    }
 
-  return (
-    <Consumer>
-      {({ onTileClick }) => (
-        <article
-          className={`Tile ${className}`}
-          onClick={handleClick(onTileClick)}
-          role="button"
-        >
-          {children()}
-        </article>
-      )}
-    </Consumer>
-  )
-}
+    return (
+      <article
+        className={`Tile ${className}`}
+        onClick={handleClick}
+        role="button"
+      >
+        {children()}
+      </article>
+    )
+  },
+)
 
 Tile.propTypes = {
   children: PropTypes.func.isRequired,

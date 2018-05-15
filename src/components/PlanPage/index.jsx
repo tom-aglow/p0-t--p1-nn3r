@@ -5,19 +5,26 @@ import PostModal from './PostModal'
 
 import './styles.css'
 
-const { Provider, Consumer } = React.createContext()
+const { Provider, Consumer } = React.createContext(() => {
+  throw new Error('PlanPage consumer cannot be rendered outside the provider')
+})
 
 class PlanPage extends Component {
+  // eslint-disable-next-line react/sort-comp
   onTileClick = params => {
     console.log('doohh', params)
-    this.setState({ modalIsOpen: true })
+    this.setState(prevState => ({
+      modalIsOpen: true,
+      context: { ...prevState.context, selectedPost: params },
+    }))
   }
 
   state = {
     context: {
       onTileClick: this.onTileClick,
+      selectedPost: {},
     },
-    modalIsOpen: true,
+    modalIsOpen: false,
   }
 
   handleModalClose = () => {
