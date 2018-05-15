@@ -1,4 +1,8 @@
 import React from 'react'
+import facebook from './Checkbox/facebook.png'
+import instagram from './Checkbox/instagram.png'
+import googleplus from './Checkbox/googleplus.png'
+import twitter from './Checkbox/twitter.png'
 
 function generateNumbersArr(num) {
   const arr = []
@@ -26,4 +30,34 @@ function renderMinutesOptions() {
   return renderOptions(generateNumbersArr(60))
 }
 
-export { renderHoursOptions, renderMinutesOptions }
+function getIconPath(media) {
+  const icons = {
+    facebook,
+    twitter,
+    instagram,
+    googleplus,
+  }
+  return icons[media] || null
+}
+
+function mapToCheckboxComponent({ checkedMedia, Component, cb }) {
+  return function mapper(media) {
+    const checked = checkedMedia.includes(media)
+    return (
+      <Component
+        media={media}
+        smPath={getIconPath(media)}
+        checked={checked}
+        onChange={cb}
+        key={media}
+      />
+    )
+  }
+}
+
+export {
+  renderHoursOptions,
+  renderMinutesOptions,
+  getIconPath,
+  mapToCheckboxComponent,
+}

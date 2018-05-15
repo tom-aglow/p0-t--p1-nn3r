@@ -8,14 +8,19 @@ class Checkbox extends Component {
   }
 
   handleClick = () => {
-    this.setState(prevState => ({ checked: !prevState.checked }))
-    this.props.onChange(this.props.media)
+    const { onChange, media } = this.props
+    this.setState(
+      prevState => ({ checked: !prevState.checked }),
+      () => {
+        onChange(media, this.state.checked)
+      },
+    )
   }
 
   render() {
     const { checked } = this.state
     return (
-      <div className="Checkbox">
+      <div className={`Checkbox ${checked ? 'checked' : ''}`}>
         <input
           type="checkbox"
           checked={checked}

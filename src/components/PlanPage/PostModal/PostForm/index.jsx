@@ -1,11 +1,15 @@
 import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 import DatePicker from 'react-datepicker'
 import 'react-datepicker/dist/react-datepicker.css'
 import moment from 'moment'
 
 import Checkbox from './Checkbox'
-import { renderHoursOptions, renderMinutesOptions } from './utils'
-import facebookPath from './Checkbox/facebook.png'
+import {
+  renderHoursOptions,
+  renderMinutesOptions,
+  mapToCheckboxComponent,
+} from './utils'
 import './styles.css'
 
 moment.updateLocale('en', {
@@ -17,15 +21,25 @@ moment.updateLocale('en', {
 class PostForm extends Component {
   state = {
     date: moment(),
-    media: ['facebook', 'instagram'],
+    media: this.props.media,
   }
 
   handleDateChange = date => {
     this.setState({ date })
   }
 
-  handleCheckboxChange = () => {
-    console.log('hey')
+  handleCheckboxChange = (media, state) => {
+    console.log(media, state)
+  }
+
+  renderCheckboxes() {
+    return this.props.allMedia.map(
+      mapToCheckboxComponent({
+        checkedMedia: this.state.media,
+        Component: Checkbox,
+        cb: this.handleCheckboxChange,
+      }),
+    )
   }
 
   render() {
@@ -53,19 +67,22 @@ class PostForm extends Component {
           <span className="PostForm__timezone">UTC+03:00</span>
         </div>
         {/* social media */}
-        <div className="PostForm__social">
-          <Checkbox
-            media={this.state.media[0]}
-            smPath={facebookPath}
-            checked
-            onChange={this.handleCheckboxChange}
-          />
-        </div>
+        <div className="PostForm__social">{this.renderCheckboxes()}</div>
         I am a modal
         <button type="submit">Schedule Post</button>
       </form>
     )
   }
+}
+
+PostForm.defaultProps = {
+  allMedia: ['facebook', 'instagram', 'googleplus', 'twitter'],
+  media: ['facebook', 'instagram'],
+}
+
+PostForm.propTypes = {
+  allMedia: PropTypes.array, // eslint-disable-line react/forbid-prop-types
+  media: PropTypes.array, // eslint-disable-line react/forbid-prop-types
 }
 
 export default PostForm
