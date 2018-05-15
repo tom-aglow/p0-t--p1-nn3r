@@ -1,0 +1,31 @@
+@import 'styles/vars.sass'
+
+$size: 40px
+
+.Checkbox
+  position: relative
+  width: $size
+  height: $size
+
+.Checkbox__input
+  position: absolute
+
+.Checkbox__media
+  position: absolute
+  right: 0
+  bottom: 0
+  width: 10px
+  z-index: 10
+
+.Checkbox__logo
+  width: $size
+  height: $size
+  background:
+    image: url('./logo.png')
+  box-shadow: inset 0px 0px 0px 0px $color-fill-green
+  filter: grayscale(1)
+  transition: all 0.3s
+
+.Checkbox__logo.checked
+  filter: grayscale(0)
+  box-shadow: inset 0px 0px 0px 4px $color-fill-green

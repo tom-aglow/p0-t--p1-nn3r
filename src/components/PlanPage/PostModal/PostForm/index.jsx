@@ -3,7 +3,9 @@ import DatePicker from 'react-datepicker'
 import 'react-datepicker/dist/react-datepicker.css'
 import moment from 'moment'
 
+import Checkbox from './Checkbox'
 import { renderHoursOptions, renderMinutesOptions } from './utils'
+import facebookPath from './Checkbox/facebook.png'
 import './styles.css'
 
 moment.updateLocale('en', {
@@ -15,10 +17,15 @@ moment.updateLocale('en', {
 class PostForm extends Component {
   state = {
     date: moment(),
+    media: ['facebook', 'instagram'],
   }
 
   handleDateChange = date => {
     this.setState({ date })
+  }
+
+  handleCheckboxChange = () => {
+    console.log('hey')
   }
 
   render() {
@@ -44,6 +51,15 @@ class PostForm extends Component {
             {renderMinutesOptions()}
           </select>
           <span className="PostForm__timezone">UTC+03:00</span>
+        </div>
+        {/* social media */}
+        <div className="PostForm__social">
+          <Checkbox
+            media={this.state.media[0]}
+            smPath={facebookPath}
+            checked
+            onChange={this.handleCheckboxChange}
+          />
         </div>
         I am a modal
         <button type="submit">Schedule Post</button>

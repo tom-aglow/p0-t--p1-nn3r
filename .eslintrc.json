@@ -23,6 +23,8 @@
     "import/no-unresolved": [2, { "ignore": ["components", "db", "styles"] }],
     "import/extensions": [2, { "js": "never" }],
     "import/no-extraneous-dependencies": ["error", { "devDependencies": true }],
-    "noplusplus": "off"
+    "noplusplus": "off",
+    "jsx-a11y/click-events-have-key-events": "off",
+    "jsx-a11y/no-noninteractive-element-to-interactive-role": "off"
   }
 }
