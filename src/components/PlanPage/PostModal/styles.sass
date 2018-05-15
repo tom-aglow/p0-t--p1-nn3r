@@ -1,0 +1,22 @@
+@import 'styles/vars.sass'
+
+$width: 600px
+$height: 490px
+
+.PostModal
+  position: absolute
+  top: 30px
+  left: calc((100% - #{$width}) / 2)
+  width: $width
+  height: $height
+  background-color: $color-fill-lightgrey
+
+
+.PostModal__Overlay
+  z-index: 20
+  position: fixed
+  top: 0
+  left: 0
+  right: 0
+  bottom: 0
+  background-color: rgba(0, 0, 0, 0.6)

@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import Loader from './Loader'
 import Day from './Day'
+import PostModal from './PostModal'
+
 import './styles.css'
 
 const { Provider, Consumer } = React.createContext()
@@ -8,12 +10,18 @@ const { Provider, Consumer } = React.createContext()
 class PlanPage extends Component {
   onTileClick = params => {
     console.log('doohh', params)
+    this.setState({ modalIsOpen: true })
   }
 
   state = {
     context: {
       onTileClick: this.onTileClick,
     },
+    modalIsOpen: false,
+  }
+
+  handleModalClose = () => {
+    this.setState({ modalIsOpen: false })
   }
 
   renderDays() {
@@ -32,13 +40,17 @@ class PlanPage extends Component {
 
   render() {
     const { data } = this.props
-    const { context } = this.state
+    const { context, modalIsOpen } = this.state
     const hasData = Object.keys(data).length > 0
 
     return (
       <Provider value={context}>
         <div className="PlanPage">
           {hasData ? this.renderDays() : <Loader />}
+          <PostModal
+            onClose={this.handleModalClose}
+            modalIsOpen={modalIsOpen}
+          />
         </div>
       </Provider>
     )
