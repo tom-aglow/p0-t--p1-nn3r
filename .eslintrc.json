@@ -22,6 +22,7 @@
     "react/no-did-mount-set-state": "off",
     "import/no-unresolved": [2, { "ignore": ["components", "db", "styles"] }],
     "import/extensions": [2, { "js": "never" }],
-    "import/no-extraneous-dependencies": ["error", { "devDependencies": true }]
+    "import/no-extraneous-dependencies": ["error", { "devDependencies": true }],
+    "noplusplus": "off"
   }
 }

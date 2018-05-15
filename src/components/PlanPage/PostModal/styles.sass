@@ -3,7 +3,7 @@
 $width: 50%
 $height: 490px
 
-// MODAL AND OVERLAY
+// MODAL
 .PostModal
   position: absolute
   top: $margin-ver-lg
@@ -24,6 +24,9 @@ $height: 490px
     transform: translateY(0)
     opacity: 1
 
+
+
+// OVERLAY
 
 .PostModal__Overlay
   z-index: 20
@@ -58,25 +61,3 @@ $height: 490px
 
 .PostModal__title
   margin: 0
-
-
-
-// FORM
-
-.PostForm__date-time
-  display: flex
-  align-items: center
-
-.PostForm__date
-  margin-left: $margin-hor-sm
-  margin-right: $margin-hor-xs
-  font-size: $font-size-md
-  padding: $padding-ver-xxs $padding-hor-xs
-  border-radius: 3px
-  border-width: 0
-  box-shadow: 0 1px 10px rgba(0,0,0,0.1)
-
-  background:
-    image: url('./triangle.svg')
-    repeat: no-repeat
-    position: calc(100% - 10px) 50%

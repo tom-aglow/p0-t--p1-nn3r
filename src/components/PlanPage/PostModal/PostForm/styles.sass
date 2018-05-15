@@ -1,0 +1,49 @@
+@import 'styles/vars.sass'
+
+// FORM
+
+.PostForm__date-time
+  display: flex
+  align-items: center
+
+.PostForm__date,
+.PostForm__hours,
+.PostForm__minutes
+  padding: $padding-ver-xxs $padding-hor-xs
+  font-size: $font-size-md
+  box-shadow: 0 1px 10px rgba(0,0,0,0.1)
+  border-radius: 3px
+  border-width: 0
+
+  background:
+    color: $color-fill-white
+    image: url('./triangle.svg')
+    repeat: no-repeat
+    position: calc(100% - 10px) 50%
+
+.PostForm__date
+  margin-left: $margin-hor-sm
+  margin-right: $margin-hor-xs
+
+
+.PostForm__hours,
+.PostForm__minutes
+  border: none
+  -webkit-appearance: none
+  -moz-appearance: none
+  width: 55px
+
+.PostForm__hours,
+  margin-left: $margin-hor-xs
+  border-top-right-radius: 0
+  border-bottom-right-radius: 0
+  border-right: 1px solid $color-fill-grey
+
+.PostForm__minutes
+  border-top-left-radius: 0
+  border-bottom-left-radius: 0
+  margin-right: $margin-hor-xs
+
+.PostForm__timezone
+  font-size: $font-size-sm
+  color: $color-fill-grey
