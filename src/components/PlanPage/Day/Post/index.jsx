@@ -1,8 +1,8 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import Icon from 'components/PlanPage/shared/Icon'
-import Consumer from 'components/PlanPage/consumer'
 
+import Tile from '../Tile'
 import { formatTime } from '../utils'
 import icons from './icons'
 import './styles.css'
@@ -12,27 +12,18 @@ const Post = ({ media, text, time }) => {
 
   const renderMediaIcon = () => media.map(mapToIconElement)
 
-  const handleClick = cb => () => {
-    cb()
-    console.log('hey')
-  }
-
   return (
-    <Consumer>
-      {({ onTileClick }) => (
-        <article
-          className="Post __tile__"
-          onClick={handleClick(onTileClick)}
-          role="button"
-        >
+    <Tile className="Post">
+      {() => (
+        <div>
           <header className="Post__header">
             <span className="Post__time">{formatTime(time)}</span>
             <div className="Post__socialmedia">{renderMediaIcon()}</div>
           </header>
           <p>{text}</p>
-        </article>
+        </div>
       )}
-    </Consumer>
+    </Tile>
   )
 }
 

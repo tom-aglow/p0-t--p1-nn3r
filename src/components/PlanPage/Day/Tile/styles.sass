@@ -1,0 +1,43 @@
+@import 'styles/vars.sass'
+
+$tile-size: calc(200px - #{$padding-hor-sm})
+$animation-time: 0.4s
+
+.Tile
+  width: $tile-size
+  height: $tile-size
+  padding: $padding-hor-sm
+  border: 1px solid $color-fill-mediumgrey
+  margin: -1px 0 0 -1px
+  cursor: pointer
+  transform-origin: center
+  animation: fall $animation-time forwards ease-out
+
+  &:hover
+    animation: rise $animation-time forwards ease-out
+
+    box-shadow: 0px 1px 20px 0px rgba(0,0,0,0.1)
+
+@keyframes rise
+  0%
+    transform: scale(1)
+    z-index: 0
+  5%
+    transform: scale(1)
+    z-index: 2
+  100%
+    transform: scale(1.05)
+    z-index: 2
+
+@keyframes fall
+  0%
+    transform: scale(1.05)
+    z-index: 2
+  5%
+    z-index: 1
+  95%
+    transform: scale(1)
+    z-index: 1
+  100%
+    transform: scale(1)
+    z-index: 0
