@@ -17,7 +17,7 @@ class PlanPage extends Component {
     context: {
       onTileClick: this.onTileClick,
     },
-    modalIsOpen: false,
+    modalIsOpen: true,
   }
 
   handleModalClose = () => {
