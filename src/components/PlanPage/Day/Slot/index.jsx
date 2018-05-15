@@ -9,9 +9,12 @@ import './styles.css'
 
 const Slot = ({ time, text }) => {
   const isNew = time === 'new'
+  const type = isNew ? 'new' : 'slot'
+
+  const options = { type, time }
 
   return (
-    <Tile className="Slot">
+    <Tile className="Slot" options={options}>
       {() => (
         <div>
           {!isNew && <p className="Slot__time">{formatTime(time)}</p>}

@@ -6,8 +6,8 @@ import './styles.css'
 const { Provider, Consumer } = React.createContext()
 
 class PlanPage extends Component {
-  onTileClick = () => {
-    console.log('doohh')
+  onTileClick = params => {
+    console.log('doohh', params)
   }
 
   state = {

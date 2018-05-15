@@ -3,10 +3,9 @@ import PropTypes from 'prop-types'
 import Consumer from 'components/PlanPage/consumer'
 import './styles.css'
 
-const Tile = ({ children, className }) => {
+const Tile = ({ children, className, options }) => {
   const handleClick = cb => () => {
-    cb()
-    console.log('hey')
+    cb(options)
   }
 
   return (

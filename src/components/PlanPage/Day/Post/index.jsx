@@ -12,8 +12,10 @@ const Post = ({ media, text, time }) => {
 
   const renderMediaIcon = () => media.map(mapToIconElement)
 
+  const options = { type: 'post', text, time }
+
   return (
-    <Tile className="Post">
+    <Tile className="Post" options={options}>
       {() => (
         <div>
           <header className="Post__header">
