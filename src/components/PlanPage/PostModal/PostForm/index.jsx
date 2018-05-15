@@ -95,7 +95,9 @@ class PostForm extends Component {
         />
 
         {/* buttons */}
-        <button className="PostForm__button">Schedule Post</button>
+        <button className="PostForm__button">
+          Schedule Post<div className="bg" />
+        </button>
       </form>
     )
   }

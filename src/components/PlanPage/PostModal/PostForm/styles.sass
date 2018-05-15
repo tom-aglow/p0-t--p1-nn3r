@@ -99,3 +99,30 @@ $border-radius: 3px
 
   &:hover
     box-shadow: inset 0px -60px 0px 0px rgba(0,0,0,0.1)
+
+//  LOADING ANIMATION
+.PostForm__button
+  position: relative
+  overflow: hidden
+
+  &.loading
+    .bg
+      will-change: transform
+      position: absolute
+      left: -40px
+      background-size: 40px 40px
+      right: 0
+      top: 0
+      bottom: 0
+
+      background-image: linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent)
+
+      animation: MOVE-BG 2s infinite
+
+
+@keyframes MOVE-BG
+	from
+		transform: translateX(0)
+
+	to
+		transform: translateX(40px)
