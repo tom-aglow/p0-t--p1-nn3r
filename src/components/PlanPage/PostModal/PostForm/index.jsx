@@ -22,6 +22,7 @@ class PostForm extends Component {
   state = {
     date: moment(),
     media: this.props.media,
+    text: '',
   }
 
   handleDateChange = date => {
@@ -30,6 +31,14 @@ class PostForm extends Component {
 
   handleCheckboxChange = (media, state) => {
     console.log(media, state)
+  }
+
+  handleTimeChange = event => {
+    console.log(event.target.value)
+  }
+
+  handleTextChange = event => {
+    this.setState({ text: event.target.value })
   }
 
   renderCheckboxes() {
@@ -43,7 +52,7 @@ class PostForm extends Component {
   }
 
   render() {
-    const { date } = this.state
+    const { date, text } = this.state
     return (
       <form className="PostForm">
         {/* date & time */}
@@ -58,18 +67,35 @@ class PostForm extends Component {
             onChange={this.handleDateChange}
             dateFormat="MMM, DD, ddd"
           />
+
           <span>at</span>
+
           {/* time */}
-          <select className="PostForm__hours">{renderHoursOptions()}</select>
-          <select className="PostForm__minutes">
+          <select className="PostForm__hours" onChange={this.handleTimeChange}>
+            {renderHoursOptions()}
+          </select>
+
+          <select
+            className="PostForm__minutes"
+            onChange={this.handleTimeChange}
+          >
             {renderMinutesOptions()}
           </select>
+
           <span className="PostForm__timezone">UTC+03:00</span>
         </div>
-        {/* social media */}
+
+        {/* social media and text */}
         <div className="PostForm__social">{this.renderCheckboxes()}</div>
-        I am a modal
-        <button type="submit">Schedule Post</button>
+        <textarea
+          className="PostForm__text"
+          value={text}
+          onChange={this.handleTextChange}
+          placeholder="Text and links"
+        />
+
+        {/* buttons */}
+        <button className="PostForm__button">Schedule Post</button>
       </form>
     )
   }
