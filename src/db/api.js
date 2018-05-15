@@ -11,4 +11,14 @@ function getData() {
   })
 }
 
-export default { getData }
+function updatePost() {
+  return new Promise(resolve => {
+    setTimeout(() => {
+      // eslint-disable-next-line no-console
+      console.log('post was updated')
+      resolve()
+    }, SERVER_RESPONSE_DELAY)
+  })
+}
+
+export default { getData, updatePost }

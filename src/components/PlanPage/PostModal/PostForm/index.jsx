@@ -27,7 +27,6 @@ class PostForm extends Component {
     date: moment(this.props.plan.selectedPost.day),
     media: this.props.plan.selectedPost.media || [],
     text: this.props.plan.selectedPost.text || '',
-    time: this.props.plan.selectedPost.time || '',
     hours: getHours(this.props.plan.selectedPost.time) || '00',
     minutes: getMinutes(this.props.plan.selectedPost.time) || '00',
   }
@@ -49,6 +48,22 @@ class PostForm extends Component {
   handleInputChange = event => {
     const inputName = event.target.className.split('__')[1]
     this.setState({ [inputName]: event.target.value })
+  }
+
+  handleSaveButtonClick = event => {
+    const {
+      onPostSave,
+      selectedPost: { id },
+    } = this.props.plan
+    event.preventDefault()
+    const time = `${this.state.hours}:${this.state.minutes}`
+    const prevDate = moment(this.props.plan.selectedPost.day)
+    onPostSave({
+      ...this.state,
+      id,
+      time,
+      prevDate,
+    })
   }
 
   renderCheckboxes() {
@@ -112,7 +127,10 @@ class PostForm extends Component {
 
         {/* buttons */}
         <div className="PostForm__buttons">
-          <button className="PostForm__button-save">
+          <button
+            className="PostForm__button-save"
+            onClick={this.handleSaveButtonClick}
+          >
             Schedule Post<div className="bg" />
           </button>
           <button className="PostForm__button-delete">Delete Post</button>

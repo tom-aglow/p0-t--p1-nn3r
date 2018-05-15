@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import Loader from './Loader'
 import Day from './Day'
 import PostModal from './PostModal'
+import { isObjEmpty } from './utils'
 
 import './styles.css'
 
@@ -19,12 +20,56 @@ class PlanPage extends Component {
     }))
   }
 
+  onPostSave = async params => {
+    console.log('woow', params)
+    await this.props.updatePost(params)
+
+    const date = params.date.format('YYYY-MM-DD')
+    const prevDate = params.prevDate.format('YYYY-MM-DD')
+    const { text, time, media } = params
+
+    this.setState(prevState => ({
+      data: {
+        ...prevState.data,
+        [prevDate]: {
+          ...(prevState.data[prevDate] || {}),
+          posts: {
+            ...(prevState.data[prevDate] ? prevState.data[prevDate].posts : {}),
+            [params.id]: {},
+          },
+        },
+        [date]: {
+          ...(prevState.data[date] || {}),
+          posts: {
+            ...(prevState.data[date] ? prevState.data[date].posts : {}),
+            [params.id]: {
+              text,
+              time,
+              media,
+            },
+          },
+        },
+      },
+    }))
+    this.setState({ modalIsOpen: false })
+  }
+
   state = {
     context: {
       onTileClick: this.onTileClick,
+      onPostSave: this.onPostSave,
       selectedPost: {},
     },
     modalIsOpen: false,
+    data: {},
+  }
+
+  static getDerivedStateFromProps(nextProps, prevState) {
+    if (isObjEmpty(nextProps.data)) return null
+    return {
+      ...prevState,
+      data: nextProps.data,
+    }
   }
 
   handleModalClose = () => {
@@ -32,7 +77,7 @@ class PlanPage extends Component {
   }
 
   renderDays() {
-    const { data } = this.props
+    const { data } = this.state
     const mapToDayComponent = day => (
       <Day
         posts={data[day].posts}
@@ -46,9 +91,8 @@ class PlanPage extends Component {
   }
 
   render() {
-    const { data } = this.props
-    const { context, modalIsOpen } = this.state
-    const hasData = Object.keys(data).length > 0
+    const { context, modalIsOpen, data } = this.state
+    const hasData = !isObjEmpty(data)
 
     return (
       <Provider value={context}>
@@ -66,16 +110,3 @@ class PlanPage extends Component {
 
 export default PlanPage
 export { Consumer }
-
-// const PlanPage = props => {
-//   const { data } = props
-//   const hasData = Object.keys(data).length > 0
-//
-//   const mapToDayComponent = day => (
-//     <Day posts={data[day].posts} stats={data[day].stats} key={day} day={day} />
-//   )
-//
-//   const renderDays = () => Object.keys(data).map(mapToDayComponent)
-//
-//   return <div className="PlanPage">{hasData ? renderDays() : <Loader />}</div>
-// }

@@ -12,7 +12,7 @@ class PlanPageContainer extends Component {
   }
   render() {
     const { data } = this.state
-    return <PlanPage data={data} />
+    return <PlanPage data={data} updatePost={api.updatePost} />
   }
 }
 

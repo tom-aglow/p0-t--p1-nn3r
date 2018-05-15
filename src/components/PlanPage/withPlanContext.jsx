@@ -10,7 +10,8 @@ function withPlanContext(Component) {
       </Consumer>
     )
   }
-  Wrapper.displayName = `withToggle(${Component.displayName || Component.name})`
+  Wrapper.displayName = `withPlanContext(${Component.displayName ||
+    Component.name})`
   return hoistNonReactStatics(React.forwardRef(Wrapper), Component)
 }
 

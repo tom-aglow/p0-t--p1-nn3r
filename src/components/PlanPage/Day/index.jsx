@@ -13,6 +13,7 @@ import {
   getNewPostObj,
   reduceToTimeKey,
 } from './utils'
+import { isObjEmpty } from '../utils'
 import './styles.css'
 
 class Day extends Component {
@@ -20,12 +21,19 @@ class Day extends Component {
     spots: {},
   }
 
-  componentDidMount() {
-    const { posts, slots } = this.props
+  static getDerivedStateFromProps(nextProps) {
+    if (isObjEmpty(nextProps.posts) || nextProps.slots.length === 0) return null
+    const { posts, slots } = nextProps
     const postsRemapped = Object.keys(posts).reduce(reduceToTimeKey(posts), {})
     const slotsObj = slots.reduce(reduceToSlotsObject, {})
     const newPostObj = getNewPostObj()
-    this.setState({ spots: { ...slotsObj, ...postsRemapped, ...newPostObj } })
+    return {
+      spots: {
+        ...slotsObj,
+        ...postsRemapped,
+        ...newPostObj,
+      },
+    }
   }
 
   day = new Date(this.props.day)
@@ -33,9 +41,11 @@ class Day extends Component {
   mapToSlotOrPost = key => {
     const Element = this.state.spots[key].type === 'slot' ? Slot : Post
     return (
-      <CSSTransition key={key} timeout={500} classNames="fade">
-        <Element {...this.state.spots[key]} key={key} day={this.props.day} />
-      </CSSTransition>
+      this.state.spots[key].time && (
+        <CSSTransition key={key} timeout={500} classNames="fade">
+          <Element {...this.state.spots[key]} key={key} day={this.props.day} />
+        </CSSTransition>
+      )
     )
   }
 
