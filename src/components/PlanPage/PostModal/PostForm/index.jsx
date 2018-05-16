@@ -15,6 +15,7 @@ import {
   getHours,
   getMinutes,
   filterOut,
+  getApiCallback,
 } from './utils'
 import './styles.css'
 
@@ -60,26 +61,13 @@ class PostForm extends Component {
 
   handleSaveButtonClick = event => {
     event.preventDefault()
-    const {
-      selectedPost: { id },
-      api,
-    } = this.props.plan
-    const type = id ? 'update' : 'add'
+    const type = this.props.plan.selectedPost.id ? 'update' : 'add'
 
-    if (['loading', 'deleting'].includes(this.state.status)) return null
-
-    this.setState({ status: 'loading' }, async () => {
-      type === 'update'
-        ? await api.updatePost(this.state)
-        : await api.addPost(this.state)
-      this.setState({ status: '' })
-      this.updatePostData(type)
-    })
+    this.updatePostData(type, 'loading')
   }
 
   handleDeleteButtonClick = event => {
     event.preventDefault()
-    if (['loading', 'deleting'].includes(this.state.status)) return null
     this.setState({ status: 'confirming' })
   }
 
@@ -88,36 +76,35 @@ class PostForm extends Component {
   }
 
   handleDeleteConfirm = () => {
-    const {
-      selectedPost: { id },
-      api,
-    } = this.props.plan
-
-    this.setState({ status: 'deleting' }, async () => {
-      await api.deletePost(id)
-      this.setState({ status: '' })
-      this.updatePostData('delete')
-    })
+    this.updatePostData('delete', 'deleting')
   }
 
-  updatePostData(type) {
-    const {
-      onPostUpdate,
-      selectedPost: { id },
-    } = this.props.plan
-    const time = `${this.state.hours}:${this.state.minutes}`
-    const prevDate = moment(this.props.plan.selectedPost.day).format(
-      'YYYY-MM-DD',
-    )
-    const date = moment(this.state.date).format('YYYY-MM-DD')
+  updatePostData(type, status) {
+    this.setState({ status }, async () => {
+      const {
+        onPostUpdate,
+        selectedPost: { id },
+        api,
+      } = this.props.plan
+      const payload = { ...this.state, id }
 
-    onPostUpdate({
-      ...this.state,
-      id,
-      time,
-      prevDate,
-      type,
-      date,
+      await getApiCallback(api, type)(payload)
+
+      this.setState({ status: '' })
+
+      const time = `${this.state.hours}:${this.state.minutes}`
+      const prevDate = moment(this.props.plan.selectedPost.day).format(
+        'YYYY-MM-DD',
+      )
+      const date = moment(this.state.date).format('YYYY-MM-DD')
+
+      onPostUpdate({
+        ...payload,
+        time,
+        prevDate,
+        type,
+        date,
+      })
     })
   }
 

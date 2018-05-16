@@ -73,6 +73,19 @@ function filterOut(term) {
   }
 }
 
+function getApiCallback(api, action) {
+  switch (action) {
+    case 'add':
+      return api.addPost
+    case 'update':
+      return api.updatePost
+    case 'delete':
+      return api.deletePost
+    default:
+      return api
+  }
+}
+
 export {
   renderHoursOptions,
   renderMinutesOptions,
@@ -81,4 +94,5 @@ export {
   getHours,
   getMinutes,
   filterOut,
+  getApiCallback,
 }
