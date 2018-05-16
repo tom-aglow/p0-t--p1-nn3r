@@ -3,18 +3,18 @@
 // MODAL
 .ConfirmModal
   position: absolute
-  top: $margin-ver-xl
+  top: $pm-xl
   width: 400px
-  left: calc((100% - 400px) / 2)
+  left: calc((100% - 400px) / 2 - #{$pm-md})
   background-color: $color-fill-lightgrey
   transform: translateY(-40px)
   opacity: 0
   animation: slideIn 300ms forwards 100ms ease-out
   will-change: transform
-  padding: $padding-hor-md
+  padding: $pm-md
 
-  @media screen and (max-width: $bp-screen-md)
-    width: calc(100% - 2 * (30px + #{$padding-hor-md}))
+  @media screen and (max-width: calc(400px + 2 * #{$pm-md} + 60px))
+    width: calc(100% - 2 * (30px + #{$pm-md}))
     left: 30px
 
 
@@ -53,7 +53,7 @@
 
 .ConfirmModal__text
   margin-top: 0
-  margin-bottom: $margin-ver-lg
+  margin-bottom: $pm-lg
 
 .ConfirmModal__buttons
   display: flex
@@ -67,7 +67,7 @@
   -webkit-appearance: none
   border: none
   border-radius: 3px
-  padding: $padding-hor-xs $padding-hor-sm
+  padding: $pm-xs $pm-sm
   background-color: $color-fill-darkgrey
   box-shadow: inset 0px -3px 0px 0px rgba(0,0,0,0.1)
   text-transform: uppercase
@@ -78,11 +78,11 @@
     box-shadow: inset 0px -60px 0px 0px rgba(0,0,0,0.1)
 
   @media screen and (max-width: $bp-screen-xs)
-    padding: $padding-hor-xs $padding-hor-sm
+    padding: $pm-xs $pm-sm
     font-size: $font-size-sm
 
 .ConfirmModal__button-confirm
-  margin-left: $margin-hor-sm
+  margin-left: $pm-sm
   background-color: $color-fill-red
   color: $color-fill-white
   box-shadow: inset 0px -3px 0px 0px rgba(130, 4, 20,0.2)

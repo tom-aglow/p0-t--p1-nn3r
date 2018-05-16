@@ -190,6 +190,7 @@ class PostForm extends PureComponent {
           onChange={this.handleInputChange}
           placeholder="Text and links"
           disabled={disabled}
+          autoFocus
         />
 
         {/* buttons */}

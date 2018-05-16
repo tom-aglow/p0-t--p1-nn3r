@@ -9,12 +9,12 @@ $border-radius: 3px
   display: flex
   flex-wrap: wrap
   align-items: center
-  margin-bottom: $margin-ver-sm
+  margin-bottom: $pm-sm
 
   label
     @media screen and (max-width: $bp-screen-md)
       flex-basis: 100%
-      margin-bottom: $margin-ver-xs
+      margin-bottom: $pm-xs
 
 .PostForm__date,
 .PostForm__date_m,
@@ -30,7 +30,7 @@ $border-radius: 3px
 .PostForm__date_m,
 .PostForm__hours,
 .PostForm__minutes
-  padding: $padding-ver-xxs $padding-hor-xs
+  padding: $pm-xss $pm-xs
   box-shadow: 0 1px 10px rgba(0,0,0,0.1)
   border-radius: $border-radius
   border-width: 0
@@ -43,8 +43,8 @@ $border-radius: 3px
 
 .PostForm__date,
 .PostForm__date_m
-  margin-left: $margin-hor-sm
-  margin-right: $margin-hor-xs
+  margin-left: $pm-sm
+  margin-right: $pm-xs
   @media screen and (max-width: $bp-screen-md)
     margin-left: 0
 
@@ -69,7 +69,7 @@ $border-radius: 3px
 .PostForm__time
   @media screen and (max-width: 550px)
     width: 100%
-    margin-top: $margin-ver-xs
+    margin-top: $pm-xs
 
 .PostForm__hours,
 .PostForm__minutes
@@ -79,7 +79,7 @@ $border-radius: 3px
   width: 55px
 
 .PostForm__hours,
-  margin-left: $margin-hor-xs
+  margin-left: $pm-xs
   border-top-right-radius: 0
   border-bottom-right-radius: 0
   border-right: 1px solid $color-fill-grey
@@ -87,7 +87,7 @@ $border-radius: 3px
 .PostForm__minutes
   border-top-left-radius: 0
   border-bottom-left-radius: 0
-  margin-right: $margin-hor-xs
+  margin-right: $pm-xs
 
 .PostForm__timezone
   font-size: $font-size-sm
@@ -99,22 +99,22 @@ $border-radius: 3px
 .PostForm__social,
 .PostForm__text
   background-color: $color-fill-white
-  padding: $padding-hor-md
+  padding: $pm-md
   border: 1px solid $color-fill-grey
 
 .PostForm__social
   display: flex
 
   .Checkbox
-    margin-right: $margin-hor-xs
+    margin-right: $pm-xs
 
 .PostForm__text
   resize: none
-  width: calc(100% - 2 * #{$padding-hor-md} - 2 * 1px)
+  width: calc(100% - 2 * #{$pm-md} - 2 * 1px)
   height: 170px
   margin-top: -1px
   border-radius: 0
-  margin-bottom: $margin-ver-xl
+  margin-bottom: $pm-xl
 
 
 
@@ -128,14 +128,14 @@ $border-radius: 3px
   -webkit-appearance: none
   border: none
   border-radius: $border-radius
-  padding: $padding-ver-sm $padding-hor-md
+  padding: $pm-sm $pm-md
   background-color: $color-fill-darkgrey
   box-shadow: inset 0px -3px 0px 0px rgba(0,0,0,0.1)
   text-transform: uppercase
   cursor: pointer
   transition: all 0.3s ease-out
   @media screen and (max-width: $bp-screen-xs)
-    padding: $padding-hor-xs $padding-hor-sm
+    padding: $pm-xs $pm-sm
     font-size: $font-size-sm
 
   &:hover,
