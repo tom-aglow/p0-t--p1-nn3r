@@ -45,7 +45,7 @@ class Day extends Component {
     const Element = this.state.spots[key].type === 'slot' ? Slot : Post
     return (
       this.state.spots[key].time && (
-        <CSSTransition key={key} timeout={500} classNames="fade">
+        <CSSTransition key={key} timeout={1000} classNames="tile">
           <Element {...this.state.spots[key]} key={key} day={this.props.day} />
         </CSSTransition>
       )
@@ -60,6 +60,7 @@ class Day extends Component {
         media: ['facebook', 'twitter'],
         text: 'Bazzz',
         time,
+        id: '12412',
       },
     }
     this.setState(prevState => ({ spots: { ...prevState.spots, ...foo } }))

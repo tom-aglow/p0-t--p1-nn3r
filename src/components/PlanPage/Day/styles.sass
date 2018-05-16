@@ -40,25 +40,20 @@
 //  Enter/Leave animations
 
 .Tile
-  &.fade-exit
+  &.tile-exit
     opacity: 1
 
-  &.fade-exit-active
+  &.tile-exit-active
     opacity: 0.01
-    transition: opacity 500ms ease-in
+    transition: opacity 700ms ease-out
 
-//   &.fade-enter
-//     animation: none
-//     opacity: 0.5
-//     transform: translateY(-30px)
-//
-//   &.fade-enter-active
-//     animation: none
-//     opacity: 1
-//     transform: translateY(0)
-//     transition: all 5000ms ease-in
-//
-//   &.fade-enter-done
-//     animation: none
-//
-//
+  &.tile-enter
+    opacity: 0.3
+    transform: translateY(-40px)
+    box-shadow: 0px 1px 20px 0px rgba(0,0,0,0.1)
+
+  &.tile-enter-active
+    opacity: 1
+    transform: translateY(0)
+    box-shadow: 0px 1px 20px 0px rgba(0,0,0,0)
+    transition: all 700ms ease-out 300ms
