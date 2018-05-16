@@ -3,21 +3,31 @@ function isObjEmpty(obj) {
 }
 
 function reduceToNewState(prevState, { payload, type }) {
+  const { text, time, media, date, id, prevDate } = payload
+  const obj = { text, time, media }
+
   switch (type) {
-    case 'update':
-      return updateDataInState(prevState, payload)
-    case 'add':
-      return addDataInState(prevState, payload)
+    case 'update': {
+      const clearPrevDate = updateState(prevState, {
+        date: prevDate,
+        id,
+        obj: null,
+      })
+      return updateState(clearPrevDate, { date, id, obj })
+    }
+    case 'add': {
+      const newId = `id-${new Date().valueOf()}`
+      return updateState(prevState, { date, id: newId, obj })
+    }
     case 'delete':
-      return deleteDataInState(prevState, payload)
+      return updateState(prevState, { date, id, obj: null })
     default:
       return prevState
   }
 }
 
-function deleteDataInState(prevState, params) {
-  const date = params.date.format('YYYY-MM-DD')
-  const { id } = params
+function updateState(prevState, params) {
+  const { date, id, obj } = params
 
   return {
     data: {
@@ -26,60 +36,7 @@ function deleteDataInState(prevState, params) {
         ...(prevState.data[date] || {}),
         posts: {
           ...(prevState.data[date] ? prevState.data[date].posts : {}),
-          [id]: null,
-        },
-      },
-    },
-  }
-}
-
-function updateDataInState(prevState, params) {
-  const date = params.date.format('YYYY-MM-DD')
-  const prevDate = params.prevDate.format('YYYY-MM-DD')
-  const { text, time, media } = params
-
-  return {
-    data: {
-      ...prevState.data,
-      [prevDate]: {
-        ...(prevState.data[prevDate] || {}),
-        posts: {
-          ...(prevState.data[prevDate] ? prevState.data[prevDate].posts : {}),
-          [params.id]: {},
-        },
-      },
-      [date]: {
-        ...(prevState.data[date] || {}),
-        posts: {
-          ...(prevState.data[date] ? prevState.data[date].posts : {}),
-          [params.id]: {
-            text,
-            time,
-            media,
-          },
-        },
-      },
-    },
-  }
-}
-
-function addDataInState(prevState, params) {
-  const date = params.date.format('YYYY-MM-DD')
-  const { text, time, media } = params
-  const id = `id-${new Date().valueOf()}`
-
-  return {
-    data: {
-      ...prevState.data,
-      [date]: {
-        ...(prevState.data[date] || {}),
-        posts: {
-          ...(prevState.data[date] ? prevState.data[date].posts : {}),
-          [id]: {
-            text,
-            time,
-            media,
-          },
+          [id]: obj,
         },
       },
     },

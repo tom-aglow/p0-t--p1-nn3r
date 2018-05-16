@@ -70,7 +70,10 @@ class PostForm extends Component {
       selectedPost: { id },
     } = this.props.plan
     const time = `${this.state.hours}:${this.state.minutes}`
-    const prevDate = moment(this.props.plan.selectedPost.day)
+    const prevDate = moment(this.props.plan.selectedPost.day).format(
+      'YYYY-MM-DD',
+    )
+    const date = moment(this.state.date).format('YYYY-MM-DD')
 
     onPostUpdate({
       ...this.state,
@@ -78,6 +81,7 @@ class PostForm extends Component {
       time,
       prevDate,
       type,
+      date,
     })
   }
 
