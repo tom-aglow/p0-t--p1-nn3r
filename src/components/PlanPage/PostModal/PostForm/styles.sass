@@ -134,6 +134,9 @@ $border-radius: 3px
   overflow: hidden
 
   &.loading
+    box-shadow: inset 0px -60px 0px 0px rgba(0,0,0,0.1)
+    pointer-events: none
+
     .bg
       will-change: transform
       position: absolute
@@ -145,7 +148,7 @@ $border-radius: 3px
 
       background-image: linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent)
 
-      animation: MOVE-BG 2s infinite
+      animation: MOVE-BG 3s infinite
 
 
 @keyframes MOVE-BG

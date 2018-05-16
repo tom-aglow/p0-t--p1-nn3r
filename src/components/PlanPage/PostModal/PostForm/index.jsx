@@ -30,6 +30,7 @@ class PostForm extends Component {
     text: this.props.plan.selectedPost.text || '',
     hours: getHours(this.props.plan.selectedPost.time),
     minutes: getMinutes(this.props.plan.selectedPost.time),
+    status: '',
   }
 
   isPast = isInThePast(
@@ -60,9 +61,17 @@ class PostForm extends Component {
     event.preventDefault()
     const {
       selectedPost: { id },
+      api,
     } = this.props.plan
     const type = id ? 'update' : 'add'
-    this.updatePostData(type)
+
+    this.setState({ status: 'loading' }, async () => {
+      type === 'update'
+        ? await api.updatePost(this.state)
+        : await api.addPost(this.state)
+      this.setState({ status: '' })
+      this.updatePostData(type)
+    })
   }
 
   handleDeleteButtonClick = event => {
@@ -103,7 +112,8 @@ class PostForm extends Component {
   }
 
   render() {
-    const { date, text } = this.state
+    const { date, text, status } = this.state
+    const { type } = this.props.plan.selectedPost
     return (
       <form className="PostForm">
         {/* date & time */}
@@ -159,10 +169,12 @@ class PostForm extends Component {
         {!this.isPast && (
           <div className="PostForm__buttons">
             <button
-              className="PostForm__button-save"
+              className={`PostForm__button-save ${
+                status === 'loading' ? 'loading' : ''
+              }`}
               onClick={this.handleSaveButtonClick}
             >
-              Schedule Post<div className="bg" />
+              {`${type === 'slot' ? 'Schedule' : 'Edit'}`} Post<div className="bg" />
             </button>
             <button
               className="PostForm__button-delete"

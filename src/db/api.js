@@ -1,7 +1,7 @@
 /* eslint-disable import/prefer-default-export */
 import data from './data'
 
-const SERVER_RESPONSE_DELAY = 0
+const SERVER_RESPONSE_DELAY = 2000
 
 function getData() {
   return new Promise(resolve => {
@@ -21,4 +21,29 @@ function updatePost() {
   })
 }
 
-export default { getData, updatePost }
+function addPost() {
+  return new Promise(resolve => {
+    setTimeout(() => {
+      // eslint-disable-next-line no-console
+      console.log('post was added')
+      resolve()
+    }, SERVER_RESPONSE_DELAY)
+  })
+}
+
+function deletePost() {
+  return new Promise(resolve => {
+    setTimeout(() => {
+      // eslint-disable-next-line no-console
+      console.log('post was deleted')
+      resolve()
+    }, SERVER_RESPONSE_DELAY)
+  })
+}
+
+export default {
+  getData,
+  updatePost,
+  addPost,
+  deletePost,
+}

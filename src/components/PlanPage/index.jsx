@@ -22,11 +22,11 @@ class PlanPage extends Component {
 
   onPostUpdate = async params => {
     console.log('woow', params)
-    await this.props.updatePost(params)
 
     const { type, ...payload } = params
-    this.setState(prevState => reduceToNewState(prevState, { payload, type }))
-    this.setState({ modalIsOpen: false })
+    this.setState({ modalIsOpen: false }, () => {
+      this.setState(prevState => reduceToNewState(prevState, { payload, type }))
+    })
   }
 
   state = {
@@ -34,6 +34,7 @@ class PlanPage extends Component {
       onTileClick: this.onTileClick,
       onPostUpdate: this.onPostUpdate,
       selectedPost: {},
+      api: this.props.api,
     },
     modalIsOpen: false,
     data: {},
