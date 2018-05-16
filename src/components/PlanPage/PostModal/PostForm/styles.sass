@@ -22,7 +22,8 @@ $border-radius: 3px
 .PostForm__hours,
 .PostForm__minutes,
 .PostForm__text,
-.PostForm__button
+.PostForm__button-save,
+.PostForm__button-delete
   font-size: $font-size-md
   font-family: STM, sans-serif
 
@@ -118,8 +119,11 @@ $border-radius: 3px
   @media screen and (max-width: $bp-screen-xs)
     padding: $padding-hor-xs $padding-hor-sm
 
-  &:hover
+  &:hover,
+  &:disabled
     box-shadow: inset 0px -60px 0px 0px rgba(0,0,0,0.1)
+  &:disabled
+    cursor: not-allowed
 
 .PostForm__button-delete
   background-color: $color-fill-red
@@ -129,14 +133,12 @@ $border-radius: 3px
     box-shadow: inset 0px -60px 0px 0px rgba(130, 4, 20, 0.2)
 
 //  LOADING ANIMATION
-.PostForm__button-save
+.PostForm__button-save,
+.PostForm__button-delete
   position: relative
   overflow: hidden
 
   &.loading
-    box-shadow: inset 0px -60px 0px 0px rgba(0,0,0,0.1)
-    pointer-events: none
-
     .bg
       will-change: transform
       position: absolute

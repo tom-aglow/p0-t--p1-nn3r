@@ -7,6 +7,7 @@ import { isInThePast } from 'components/PlanPage/utils'
 
 import withPlanContext from 'components/PlanPage/withPlanContext'
 import Checkbox from './Checkbox'
+import ConfirmModal from './ConfirmModal'
 import {
   renderHoursOptions,
   renderMinutesOptions,
@@ -65,6 +66,8 @@ class PostForm extends Component {
     } = this.props.plan
     const type = id ? 'update' : 'add'
 
+    if (['loading', 'deleting'].includes(this.state.status)) return null
+
     this.setState({ status: 'loading' }, async () => {
       type === 'update'
         ? await api.updatePost(this.state)
@@ -76,7 +79,25 @@ class PostForm extends Component {
 
   handleDeleteButtonClick = event => {
     event.preventDefault()
-    this.updatePostData('delete')
+    if (['loading', 'deleting'].includes(this.state.status)) return null
+    this.setState({ status: 'confirming' })
+  }
+
+  handleConfirmModalClose = () => {
+    this.setState({ status: '' })
+  }
+
+  handleDeleteConfirm = () => {
+    const {
+      selectedPost: { id },
+      api,
+    } = this.props.plan
+
+    this.setState({ status: 'deleting' }, async () => {
+      await api.deletePost(id)
+      this.setState({ status: '' })
+      this.updatePostData('delete')
+    })
   }
 
   updatePostData(type) {
@@ -106,7 +127,8 @@ class PostForm extends Component {
         checkedMedia: this.state.media,
         Component: Checkbox,
         cb: this.handleCheckboxChange,
-        disabled: this.isPast,
+        disabled:
+          this.isPast || ['loading', 'deleting'].includes(this.state.status),
       }),
     )
   }
@@ -114,6 +136,8 @@ class PostForm extends Component {
   render() {
     const { date, text, status } = this.state
     const { type } = this.props.plan.selectedPost
+    const disabled = this.isPast || ['loading', 'deleting'].includes(status)
+
     return (
       <form className="PostForm">
         {/* date & time */}
@@ -128,7 +152,7 @@ class PostForm extends Component {
             onChange={this.handleDateChange}
             dateFormat="MMM, DD, ddd"
             type="date"
-            disabled={this.isPast}
+            disabled={disabled}
           />
 
           <span>at</span>
@@ -138,7 +162,7 @@ class PostForm extends Component {
             className="PostForm__hours"
             value={this.state.hours}
             onChange={this.handleInputChange}
-            disabled={this.isPast}
+            disabled={disabled}
           >
             {renderHoursOptions()}
           </select>
@@ -147,7 +171,7 @@ class PostForm extends Component {
             className="PostForm__minutes"
             value={this.state.minutes}
             onChange={this.handleInputChange}
-            disabled={this.isPast}
+            disabled={disabled}
           >
             {renderMinutesOptions()}
           </select>
@@ -162,7 +186,7 @@ class PostForm extends Component {
           value={text}
           onChange={this.handleInputChange}
           placeholder="Text and links"
-          disabled={this.isPast}
+          disabled={disabled}
         />
 
         {/* buttons */}
@@ -173,17 +197,27 @@ class PostForm extends Component {
                 status === 'loading' ? 'loading' : ''
               }`}
               onClick={this.handleSaveButtonClick}
+              disabled={disabled}
             >
               {`${type === 'slot' ? 'Schedule' : 'Edit'}`} Post<div className="bg" />
             </button>
             <button
-              className="PostForm__button-delete"
+              className={`PostForm__button-delete  ${
+                status === 'deleting' ? 'loading' : ''
+              }`}
               onClick={this.handleDeleteButtonClick}
+              disabled={disabled}
             >
-              Delete Post
+              Delete Post<div className="bg" />
             </button>
           </div>
         )}
+
+        <ConfirmModal
+          onClose={this.handleConfirmModalClose}
+          onConfirm={this.handleDeleteConfirm}
+          modalIsOpen={status === 'confirming'}
+        />
       </form>
     )
   }

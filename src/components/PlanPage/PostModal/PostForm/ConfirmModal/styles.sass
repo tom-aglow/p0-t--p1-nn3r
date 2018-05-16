@@ -1,0 +1,90 @@
+@import 'styles/vars.sass'
+
+// MODAL
+.ConfirmModal
+  position: absolute
+  top: $margin-ver-xl
+  width: 400px
+  left: calc((100% - 400px) / 2)
+  background-color: $color-fill-lightgrey
+  transform: translateY(-40px)
+  opacity: 0
+  animation: slideIn 300ms forwards 100ms ease-out
+  will-change: transform
+  padding: $padding-hor-md
+
+  // @media screen and (max-width: $bp-screen-md)
+  //   width: calc(100% - 30px * 2)
+  //   min-width: auto
+  //   left: 30px
+  // @media screen and (max-width: $bp-screen-xs)
+  //   width: calc(100% - 20px * 2)
+  //   left: 20px
+
+
+@keyframes slideIn
+  0%
+    transform: translateY(-40px)
+    opacity: 0
+  100%
+    transform: translateY(0)
+    opacity: 1
+
+
+
+// OVERLAY
+
+.ConfirmModal__Overlay
+  z-index: 30
+  position: fixed
+  top: 0
+  left: 0
+  right: 0
+  bottom: 0
+  background-color: rgba(0, 0, 0, 0.6)
+  animation: fadeIn 100ms forwards
+  overflow: scroll
+
+
+@keyframes fadeIn
+  0%
+    opacity: 0
+  100%
+    opacity: 1
+
+
+// CONTENT
+
+.ConfirmModal__text
+  margin-top: 0
+  margin-bottom: $margin-ver-lg
+
+.ConfirmModal__buttons
+  display: flex
+  justify-content: flex-end
+
+.ConfirmModal__button-cancel,
+.ConfirmModal__button-confirm
+  font-size: $font-size-md
+  font-family: STM, sans-serif
+
+  -webkit-appearance: none
+  border: none
+  border-radius: 3px
+  padding: $padding-hor-xs $padding-hor-sm
+  background-color: $color-fill-darkgrey
+  box-shadow: inset 0px -3px 0px 0px rgba(0,0,0,0.1)
+  text-transform: uppercase
+  cursor: pointer
+  transition: all 0.3s ease-out
+
+  &:hover
+    box-shadow: inset 0px -60px 0px 0px rgba(0,0,0,0.1)
+
+.ConfirmModal__button-confirm
+  margin-left: $margin-hor-sm
+  background-color: $color-fill-red
+  color: $color-fill-white
+  box-shadow: inset 0px -3px 0px 0px rgba(130, 4, 20,0.2)
+  &:hover
+    box-shadow: inset 0px -60px 0px 0px rgba(130, 4, 20, 0.2)
