@@ -59,32 +59,5 @@
   display: flex
   justify-content: flex-end
 
-.ConfirmModal__button-cancel,
-.ConfirmModal__button-confirm
-  font-size: $font-size-md
-  font-family: STM, sans-serif
-
-  -webkit-appearance: none
-  border: none
-  border-radius: 3px
-  padding: $pm-xs $pm-sm
-  background-color: $color-fill-darkgrey
-  box-shadow: inset 0px -3px 0px 0px rgba(0,0,0,0.1)
-  text-transform: uppercase
-  cursor: pointer
-  transition: all 0.3s ease-out
-
-  &:hover
-    box-shadow: inset 0px -60px 0px 0px rgba(0,0,0,0.1)
-
-  @media screen and (max-width: $bp-screen-xs)
-    padding: $pm-xs $pm-sm
-    font-size: $font-size-sm
-
 .ConfirmModal__button-confirm
   margin-left: $pm-sm
-  background-color: $color-fill-red
-  color: $color-fill-white
-  box-shadow: inset 0px -3px 0px 0px rgba(130, 4, 20,0.2)
-  &:hover
-    box-shadow: inset 0px -60px 0px 0px rgba(130, 4, 20, 0.2)

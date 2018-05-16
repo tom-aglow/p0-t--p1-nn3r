@@ -20,9 +20,7 @@ $border-radius: 3px
 .PostForm__date_m,
 .PostForm__hours,
 .PostForm__minutes,
-.PostForm__text,
-.PostForm__button-save,
-.PostForm__button-delete
+.PostForm__text
   font-size: $font-size-md
   font-family: STM, sans-serif
 
@@ -122,59 +120,3 @@ $border-radius: 3px
 .PostForm__buttons
   display: flex
   justify-content: space-between
-
-.PostForm__button-save,
-.PostForm__button-delete
-  -webkit-appearance: none
-  border: none
-  border-radius: $border-radius
-  padding: $pm-sm $pm-md
-  background-color: $color-fill-darkgrey
-  box-shadow: inset 0px -3px 0px 0px rgba(0,0,0,0.1)
-  text-transform: uppercase
-  cursor: pointer
-  transition: all 0.3s ease-out
-  @media screen and (max-width: $bp-screen-xs)
-    padding: $pm-xs $pm-sm
-    font-size: $font-size-sm
-
-  &:hover,
-  &:disabled
-    box-shadow: inset 0px -60px 0px 0px rgba(0,0,0,0.1)
-  &:disabled
-    cursor: not-allowed
-
-.PostForm__button-delete
-  background-color: $color-fill-red
-  color: $color-fill-white
-  box-shadow: inset 0px -3px 0px 0px rgba(130, 4, 20,0.2)
-  &:hover
-    box-shadow: inset 0px -60px 0px 0px rgba(130, 4, 20, 0.2)
-
-//  LOADING ANIMATION
-.PostForm__button-save,
-.PostForm__button-delete
-  position: relative
-  overflow: hidden
-
-  &.loading
-    .bg
-      will-change: transform
-      position: absolute
-      left: -40px
-      background-size: 40px 40px
-      right: 0
-      top: 0
-      bottom: 0
-
-      background-image: linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent)
-
-      animation: MOVE-BG 3s infinite
-
-
-@keyframes MOVE-BG
-	from
-		transform: translateX(0)
-
-	to
-		transform: translateX(40px)

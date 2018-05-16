@@ -7,6 +7,7 @@ import { isInThePast } from 'components/PlanPage/utils'
 
 import withPlanContext from 'components/PlanPage/withPlanContext'
 import Checkbox from './Checkbox'
+import Button from './Button'
 import ConfirmModal from './ConfirmModal'
 import {
   renderHoursOptions,
@@ -196,25 +197,23 @@ class PostForm extends PureComponent {
         {/* buttons */}
         {!this.isPast && (
           <div className="PostForm__buttons">
-            <button
-              className={`PostForm__button-save ${
-                status === 'loading' ? 'loading' : ''
-              }`}
+            <Button
+              className={`${status === 'loading' ? 'loading' : ''}`}
               onClick={this.handleSaveButtonClick}
               disabled={disabled}
             >
               {`${type === 'post' ? 'Edit' : 'Schedule'}`} Post<div className="bg" />
-            </button>
+            </Button>
             {type === 'post' && (
-              <button
-                className={`PostForm__button-delete  ${
+              <Button
+                className={`Button-red  ${
                   status === 'deleting' ? 'loading' : ''
                 }`}
                 onClick={this.handleDeleteButtonClick}
                 disabled={disabled}
               >
                 Delete Post<div className="bg" />
-              </button>
+              </Button>
             )}
           </div>
         )}

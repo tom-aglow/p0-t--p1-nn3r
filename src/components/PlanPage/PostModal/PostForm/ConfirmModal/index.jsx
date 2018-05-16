@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import Modal from 'react-modal'
+import Button from '../Button'
 import './styles.css'
 
 Modal.setAppElement('#root')
@@ -24,18 +25,13 @@ class ConfirmModal extends Component {
             Do you really want to delete this post?
           </p>
           <div className="ConfirmModal__buttons">
-            <button
-              className="ConfirmModal__button-cancel"
-              onClick={this.props.onClose}
-            >
-              Cancel
-            </button>
-            <button
-              className="ConfirmModal__button-confirm"
+            <Button onClick={this.props.onClose}>Cancel</Button>
+            <Button
+              className="Button-red ConfirmModal__button-confirm"
               onClick={this.props.onConfirm}
             >
               Delete
-            </button>
+            </Button>
           </div>
         </Modal>
       </div>
