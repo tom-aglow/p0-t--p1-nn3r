@@ -75,7 +75,7 @@ class Day extends Component {
     const [firstKey] = Object.keys(this.state.spots).sort(sortStringsAsc)
     const newTiles = Object.keys(this.state.spots).reduce((result, key) => {
       if (key !== firstKey) {
-        result[key] = this.state.spots[key]
+        result[key] = this.state.spots[key] // eslint-disable-line no-param-reassign
       }
       return result
     }, {})

@@ -1,6 +1,5 @@
 import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
-// import DatePicker from 'react-datepicker'
 import 'react-datepicker/dist/react-datepicker.css'
 import moment from 'moment'
 import { isInThePast } from 'components/PlanPage/utils'
@@ -141,6 +140,7 @@ class PostForm extends PureComponent {
         {/* date & time */}
         <div className="PostForm__date-time">
           {/* date */}
+          {/* eslint-disable-next-line */}
           <label htmlFor="PostForm__date">When to publish: </label>
           <DatePicker
             date={date}

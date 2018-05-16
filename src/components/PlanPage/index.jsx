@@ -1,4 +1,6 @@
 import React, { Component } from 'react'
+import PropTypes from 'prop-types'
+
 import Loader from './Loader'
 import Day from './Day'
 import PostModal from './PostModal'
@@ -13,7 +15,6 @@ const { Provider, Consumer } = React.createContext(() => {
 class PlanPage extends Component {
   // eslint-disable-next-line react/sort-comp
   onTileClick = params => {
-    console.log('doohh', params)
     this.setState(prevState => ({
       modalIsOpen: true,
       context: { ...prevState.context, selectedPost: params },
@@ -21,8 +22,6 @@ class PlanPage extends Component {
   }
 
   onPostUpdate = async params => {
-    console.log('woow', params)
-
     const { type, ...payload } = params
     this.setState({ modalIsOpen: false }, () => {
       this.setState(prevState => reduceToNewState(prevState, { payload, type }))
@@ -82,6 +81,10 @@ class PlanPage extends Component {
       </Provider>
     )
   }
+}
+
+PlanPage.propTypes = {
+  api: PropTypes.object.isRequired, // eslint-disable-line react/forbid-prop-types
 }
 
 export default PlanPage

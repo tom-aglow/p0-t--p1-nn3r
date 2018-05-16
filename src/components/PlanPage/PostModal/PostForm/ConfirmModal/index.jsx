@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 import Modal from 'components/PlanPage/shared/Modal'
 import Button from 'components/PlanPage/shared/Button'
 import './styles.css'
@@ -10,11 +11,12 @@ class ConfirmModal extends Component {
   }
 
   render() {
+    const { modalIsOpen, onClose, onConfirm } = this.props
     return (
       <div>
         <Modal
-          isOpen={this.props.modalIsOpen}
-          onClose={this.props.onClose}
+          isOpen={modalIsOpen}
+          onClose={onClose}
           label="Confirm Modal"
           className="ConfirmModal"
         >
@@ -22,10 +24,10 @@ class ConfirmModal extends Component {
             Do you really want to delete this post?
           </p>
           <div className="ConfirmModal__buttons">
-            <Button onClick={this.props.onClose}>Cancel</Button>
+            <Button onClick={onClose}>Cancel</Button>
             <Button
               className="Button-red ConfirmModal__button-confirm"
-              onClick={this.props.onConfirm}
+              onClick={onConfirm}
             >
               Delete
             </Button>
@@ -34,6 +36,16 @@ class ConfirmModal extends Component {
       </div>
     )
   }
+}
+
+ConfirmModal.defaultProps = {
+  modalIsOpen: false,
+}
+
+ConfirmModal.propTypes = {
+  modalIsOpen: PropTypes.bool,
+  onClose: PropTypes.func.isRequired,
+  onConfirm: PropTypes.func.isRequired,
 }
 
 export default ConfirmModal

@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 
 import Icon from 'components/PlanPage/shared/Icon'
 import Modal from 'components/PlanPage/shared/Modal'
@@ -42,6 +43,15 @@ class PostModal extends Component {
       </div>
     )
   }
+}
+
+PostModal.defaultProps = {
+  modalIsOpen: false,
+}
+
+PostModal.propTypes = {
+  modalIsOpen: PropTypes.bool,
+  onClose: PropTypes.func.isRequired,
 }
 
 export default PostModal

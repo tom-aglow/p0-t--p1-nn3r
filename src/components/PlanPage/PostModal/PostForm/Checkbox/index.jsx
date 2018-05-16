@@ -13,6 +13,7 @@ class Checkbox extends Component {
     return false
   }
 
+  // eslint-disable-next-line consistent-return
   handleClick = () => {
     const { onChange, media, disabled } = this.props
     if (disabled) return null
