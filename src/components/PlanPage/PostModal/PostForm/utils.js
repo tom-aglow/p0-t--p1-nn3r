@@ -6,6 +6,7 @@ import twitter from './Checkbox/twitter.png'
 
 function generateNumbersArr(num) {
   const arr = []
+  // eslint-disable-next-line no-plusplus
   for (let i = 0; i < num; i++) {
     const item = i < 10 ? `0${i}` : i.toString()
     arr.push(item)
