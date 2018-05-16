@@ -13,13 +13,9 @@
   will-change: transform
   padding: $padding-hor-md
 
-  // @media screen and (max-width: $bp-screen-md)
-  //   width: calc(100% - 30px * 2)
-  //   min-width: auto
-  //   left: 30px
-  // @media screen and (max-width: $bp-screen-xs)
-  //   width: calc(100% - 20px * 2)
-  //   left: 20px
+  @media screen and (max-width: $bp-screen-md)
+    width: calc(100% - 2 * (30px + #{$padding-hor-md}))
+    left: 30px
 
 
 @keyframes slideIn
