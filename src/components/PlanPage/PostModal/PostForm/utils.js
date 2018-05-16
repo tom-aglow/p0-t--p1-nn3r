@@ -41,7 +41,7 @@ function getIconPath(media) {
   return icons[media] || null
 }
 
-function mapToCheckboxComponent({ checkedMedia, Component, cb }) {
+function mapToCheckboxComponent({ checkedMedia, Component, cb, disabled }) {
   return function mapper(media) {
     const checked = checkedMedia.includes(media)
     return (
@@ -51,6 +51,7 @@ function mapToCheckboxComponent({ checkedMedia, Component, cb }) {
         checked={checked}
         onChange={cb}
         key={media}
+        disabled={disabled}
       />
     )
   }

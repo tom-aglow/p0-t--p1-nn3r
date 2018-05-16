@@ -97,6 +97,7 @@ class PostForm extends Component {
         checkedMedia: this.state.media,
         Component: Checkbox,
         cb: this.handleCheckboxChange,
+        disabled: this.isPast,
       }),
     )
   }
@@ -117,6 +118,7 @@ class PostForm extends Component {
             onChange={this.handleDateChange}
             dateFormat="MMM, DD, ddd"
             type="date"
+            disabled={this.isPast}
           />
 
           <span>at</span>
@@ -126,6 +128,7 @@ class PostForm extends Component {
             className="PostForm__hours"
             value={this.state.hours}
             onChange={this.handleInputChange}
+            disabled={this.isPast}
           >
             {renderHoursOptions()}
           </select>
@@ -134,6 +137,7 @@ class PostForm extends Component {
             className="PostForm__minutes"
             value={this.state.minutes}
             onChange={this.handleInputChange}
+            disabled={this.isPast}
           >
             {renderMinutesOptions()}
           </select>
@@ -148,6 +152,7 @@ class PostForm extends Component {
           value={text}
           onChange={this.handleInputChange}
           placeholder="Text and links"
+          disabled={this.isPast}
         />
 
         {/* buttons */}

@@ -9,16 +9,18 @@ $animation-time: 0.3s
   height: $size
   opacity: 0.4
   transition: all $animation-time
-  cursor: pointer
+  &.enabled
+    cursor: pointer
 
   &.checked
     opacity: 1
 
   @media (hover: hover)
-    &:hover
+    &.enabled:hover
       opacity: 1
       .Checkbox__logo
         filter: grayscale(0)
+
 
 .Checkbox__input
   position: absolute

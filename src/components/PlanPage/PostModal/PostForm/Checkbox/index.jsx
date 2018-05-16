@@ -8,7 +8,8 @@ class Checkbox extends Component {
   }
 
   handleClick = () => {
-    const { onChange, media } = this.props
+    const { onChange, media, disabled } = this.props
+    if (disabled) return null
     this.setState(
       prevState => ({ checked: !prevState.checked }),
       () => {
@@ -19,13 +20,19 @@ class Checkbox extends Component {
 
   render() {
     const { checked } = this.state
+    const { disabled } = this.props
     return (
-      <div className={`Checkbox ${checked ? 'checked' : ''}`}>
+      <div
+        className={`Checkbox ${checked ? 'checked' : ''} ${
+          !disabled ? 'enabled' : ''
+        }`}
+      >
         <input
           type="checkbox"
           checked={checked}
           onChange={this.handleClick}
           className="Checkbox__input"
+          disabled={disabled}
         />
         <img
           src={this.props.smPath}
@@ -49,6 +56,7 @@ class Checkbox extends Component {
 
 Checkbox.propTypes = {
   checked: PropTypes.bool.isRequired,
+  disabled: PropTypes.bool.isRequired,
   smPath: PropTypes.string.isRequired,
   media: PropTypes.string.isRequired,
   onChange: PropTypes.func.isRequired,
