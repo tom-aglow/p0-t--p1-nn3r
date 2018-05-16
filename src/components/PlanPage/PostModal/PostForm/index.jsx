@@ -44,6 +44,10 @@ class PostForm extends PureComponent {
     this.setState({ date })
   }
 
+  handleDateChangeMobile = ({ target: { value } }) => {
+    this.setState({ date: moment(value) })
+  }
+
   handleCheckboxChange = (media, state) => {
     if (state) {
       this.setState(prevState => ({ media: [...prevState.media, media] }))
@@ -143,32 +147,39 @@ class PostForm extends PureComponent {
             minDate={moment()}
             onChange={this.handleDateChange}
             dateFormat="MMM, DD, ddd"
+            disabled={disabled}
+          />
+          <input
             type="date"
+            className="PostForm__date_m"
+            value={date.format('YYYY-MM-DD')}
+            onChange={this.handleDateChangeMobile}
             disabled={disabled}
           />
 
-          <span>at</span>
-
           {/* time */}
-          <select
-            className="PostForm__hours"
-            value={this.state.hours}
-            onChange={this.handleInputChange}
-            disabled={disabled}
-          >
-            {renderHoursOptions()}
-          </select>
+          <div className="PostForm__time">
+            <span>at</span>
+            <select
+              className="PostForm__hours"
+              value={this.state.hours}
+              onChange={this.handleInputChange}
+              disabled={disabled}
+            >
+              {renderHoursOptions()}
+            </select>
 
-          <select
-            className="PostForm__minutes"
-            value={this.state.minutes}
-            onChange={this.handleInputChange}
-            disabled={disabled}
-          >
-            {renderMinutesOptions()}
-          </select>
+            <select
+              className="PostForm__minutes"
+              value={this.state.minutes}
+              onChange={this.handleInputChange}
+              disabled={disabled}
+            >
+              {renderMinutesOptions()}
+            </select>
 
-          <span className="PostForm__timezone">UTC+03:00</span>
+            <span className="PostForm__timezone">UTC+03:00</span>
+          </div>
         </div>
 
         {/* social media and text */}

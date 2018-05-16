@@ -1,7 +1,9 @@
 @import 'styles/vars.sass'
 
 $border-radius: 3px
-// DATE & TIME
+
+
+// DATEPICKER
 
 .PostForm__date-time
   display: flex
@@ -13,12 +15,9 @@ $border-radius: 3px
     @media screen and (max-width: $bp-screen-md)
       flex-basis: 100%
       margin-bottom: $margin-ver-xs
-    @media screen and (max-width: 550px)
-      & + div
-        width: 100%
-        margin-bottom: $margin-ver-xs
 
 .PostForm__date,
+.PostForm__date_m,
 .PostForm__hours,
 .PostForm__minutes,
 .PostForm__text,
@@ -28,12 +27,12 @@ $border-radius: 3px
   font-family: STM, sans-serif
 
 .PostForm__date,
+.PostForm__date_m,
 .PostForm__hours,
 .PostForm__minutes
   padding: $padding-ver-xxs $padding-hor-xs
   box-shadow: 0 1px 10px rgba(0,0,0,0.1)
   border-radius: $border-radius
-  padding:
   border-width: 0
 
   background:
@@ -42,16 +41,35 @@ $border-radius: 3px
     repeat: no-repeat
     position: calc(100% - 10px) 50%
 
-.PostForm__date
+.PostForm__date,
+.PostForm__date_m
   margin-left: $margin-hor-sm
   margin-right: $margin-hor-xs
   @media screen and (max-width: $bp-screen-md)
     margin-left: 0
 
+.PostForm__date
+  @media (pointer: coarse) and (hover: none)
+    display: none
+
+.PostForm__date_m
+  width: 190px
+  height: 20px
+  display: none
+  @media (pointer: coarse) and (hover: none)
+    display: flex
 
 
 .react-datepicker-popper
   z-index: 2
+
+
+//  TIME SELECT BOXES
+
+.PostForm__time
+  @media screen and (max-width: 550px)
+    width: 100%
+    margin-top: $margin-ver-xs
 
 .PostForm__hours,
 .PostForm__minutes
