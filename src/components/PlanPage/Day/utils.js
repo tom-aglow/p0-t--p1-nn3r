@@ -73,6 +73,8 @@ function sortStringsAsc(a, b) {
 
 function reduceToTimeKey(posts) {
   return function reducer(accObj, key) {
+    if (!posts[key]) return accObj
+
     const obj = {
       [posts[key].time]: {
         id: key,

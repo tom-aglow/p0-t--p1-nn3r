@@ -8,8 +8,28 @@ function reduceToNewState(prevState, { payload, type }) {
       return updateDataInState(prevState, payload)
     case 'add':
       return addDataInState(prevState, payload)
+    case 'delete':
+      return deleteDataInState(prevState, payload)
     default:
       return prevState
+  }
+}
+
+function deleteDataInState(prevState, params) {
+  const date = params.date.format('YYYY-MM-DD')
+  const { id } = params
+
+  return {
+    data: {
+      ...prevState.data,
+      [date]: {
+        ...(prevState.data[date] || {}),
+        posts: {
+          ...(prevState.data[date] ? prevState.data[date].posts : {}),
+          [id]: null,
+        },
+      },
+    },
   }
 }
 

@@ -51,18 +51,33 @@ class PostForm extends Component {
   }
 
   handleSaveButtonClick = event => {
+    event.preventDefault()
     const {
-      onPostSave,
       selectedPost: { id },
     } = this.props.plan
+    const type = id ? 'update' : 'add'
+    this.updatePostData(type)
+  }
+
+  handleDeleteButtonClick = event => {
     event.preventDefault()
+    this.updatePostData('delete')
+  }
+
+  updatePostData(type) {
+    const {
+      onPostUpdate,
+      selectedPost: { id },
+    } = this.props.plan
     const time = `${this.state.hours}:${this.state.minutes}`
     const prevDate = moment(this.props.plan.selectedPost.day)
-    onPostSave({
+
+    onPostUpdate({
       ...this.state,
       id,
       time,
       prevDate,
+      type,
     })
   }
 
@@ -133,7 +148,12 @@ class PostForm extends Component {
           >
             Schedule Post<div className="bg" />
           </button>
-          <button className="PostForm__button-delete">Delete Post</button>
+          <button
+            className="PostForm__button-delete"
+            onClick={this.handleDeleteButtonClick}
+          >
+            Delete Post
+          </button>
         </div>
       </form>
     )

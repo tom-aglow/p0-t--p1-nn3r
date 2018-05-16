@@ -20,21 +20,19 @@ class PlanPage extends Component {
     }))
   }
 
-  onPostSave = async params => {
+  onPostUpdate = async params => {
     console.log('woow', params)
     await this.props.updatePost(params)
 
-    const type = params.id ? 'update' : 'add'
-    this.setState(prevState =>
-      reduceToNewState(prevState, { payload: params, type }),
-    )
+    const { type, ...payload } = params
+    this.setState(prevState => reduceToNewState(prevState, { payload, type }))
     this.setState({ modalIsOpen: false })
   }
 
   state = {
     context: {
       onTileClick: this.onTileClick,
-      onPostSave: this.onPostSave,
+      onPostUpdate: this.onPostUpdate,
       selectedPost: {},
     },
     modalIsOpen: false,
