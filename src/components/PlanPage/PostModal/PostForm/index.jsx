@@ -86,24 +86,29 @@ class PostForm extends Component {
         selectedPost: { id },
         api,
       } = this.props.plan
-      const payload = { ...this.state, id }
+      const time = `${this.state.hours}:${this.state.minutes}`
+      const date = this.state.date.format('YYYY-MM-DD')
+      const { text, media } = this.state
+      const payload = {
+        id,
+        time,
+        date,
+        text,
+        media,
+      }
 
       await getApiCallback(api, type)(payload)
 
       this.setState({ status: '' })
 
-      const time = `${this.state.hours}:${this.state.minutes}`
       const prevDate = moment(this.props.plan.selectedPost.day).format(
         'YYYY-MM-DD',
       )
-      const date = moment(this.state.date).format('YYYY-MM-DD')
 
       onPostUpdate({
         ...payload,
-        time,
         prevDate,
         type,
-        date,
       })
     })
   }
@@ -186,7 +191,7 @@ class PostForm extends Component {
               onClick={this.handleSaveButtonClick}
               disabled={disabled}
             >
-              {`${type === 'slot' ? 'Schedule' : 'Edit'}`} Post<div className="bg" />
+              {`${type === 'post' ? 'Edit' : 'Schedule'}`} Post<div className="bg" />
             </button>
             <button
               className={`PostForm__button-delete  ${
@@ -216,6 +221,7 @@ PostForm.defaultProps = {
 
 PostForm.propTypes = {
   allMedia: PropTypes.array, // eslint-disable-line react/forbid-prop-types
+  plan: PropTypes.object.isRequired, // eslint-disable-line react/forbid-prop-types
 }
 
 export default withPlanContext(PostForm)
