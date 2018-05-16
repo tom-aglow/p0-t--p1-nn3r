@@ -1,6 +1,6 @@
 import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
-import DatePicker from 'react-datepicker'
+// import DatePicker from 'react-datepicker'
 import 'react-datepicker/dist/react-datepicker.css'
 import moment from 'moment'
 import { isInThePast } from 'components/PlanPage/utils'
@@ -8,6 +8,7 @@ import Button from 'components/PlanPage/shared/Button'
 
 import withPlanContext from 'components/PlanPage/withPlanContext'
 import Checkbox from './Checkbox'
+import DatePicker from './DatePicker'
 import ConfirmModal from './ConfirmModal'
 import {
   renderHoursOptions,
@@ -41,12 +42,12 @@ class PostForm extends PureComponent {
     this.props.plan.selectedPost.time,
   )
 
-  handleDateChange = date => {
-    this.setState({ date })
-  }
-
-  handleDateChangeMobile = ({ target: { value } }) => {
-    this.setState({ date: moment(value) })
+  handleDateChange = arg => {
+    if (arg.target) {
+      this.setState({ date: moment(arg.target.value) })
+    } else {
+      this.setState({ date: arg })
+    }
   }
 
   handleCheckboxChange = (media, state) => {
@@ -142,19 +143,8 @@ class PostForm extends PureComponent {
           {/* date */}
           <label htmlFor="PostForm__date">When to publish: </label>
           <DatePicker
-            id="PostForm__date"
-            className="PostForm__date"
-            selected={date}
-            minDate={moment()}
+            date={date}
             onChange={this.handleDateChange}
-            dateFormat="MMM, DD, ddd"
-            disabled={disabled}
-          />
-          <input
-            type="date"
-            className="PostForm__date_m"
-            value={date.format('YYYY-MM-DD')}
-            onChange={this.handleDateChangeMobile}
             disabled={disabled}
           />
 
