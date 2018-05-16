@@ -193,15 +193,17 @@ class PostForm extends Component {
             >
               {`${type === 'post' ? 'Edit' : 'Schedule'}`} Post<div className="bg" />
             </button>
-            <button
-              className={`PostForm__button-delete  ${
-                status === 'deleting' ? 'loading' : ''
-              }`}
-              onClick={this.handleDeleteButtonClick}
-              disabled={disabled}
-            >
-              Delete Post<div className="bg" />
-            </button>
+            {type === 'post' && (
+              <button
+                className={`PostForm__button-delete  ${
+                  status === 'deleting' ? 'loading' : ''
+                }`}
+                onClick={this.handleDeleteButtonClick}
+                disabled={disabled}
+              >
+                Delete Post<div className="bg" />
+              </button>
+            )}
           </div>
         )}
 

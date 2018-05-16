@@ -46,6 +46,7 @@ function updateState(prevState, params) {
 }
 
 function isInThePast(date = moment().format('YYYY-MM-DD'), time = '00:00') {
+  if (time === 'new') return false
   const selectedDate = moment(`${date} ${time}`)
   const now = moment()
   return selectedDate.diff(now) < 0

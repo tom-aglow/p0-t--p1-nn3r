@@ -1,4 +1,5 @@
 import React from 'react'
+import moment from 'moment'
 import facebook from './Checkbox/facebook.png'
 import instagram from './Checkbox/instagram.png'
 import googleplus from './Checkbox/googleplus.png'
@@ -58,12 +59,12 @@ function mapToCheckboxComponent({ checkedMedia, Component, cb, disabled }) {
 }
 
 function getHours(time) {
-  if (time === 'new') return '00'
+  if (time === 'new') return moment().format('HH')
   return time.slice(0, time.indexOf(':'))
 }
 
 function getMinutes(time) {
-  if (time === 'new') return '00'
+  if (time === 'new') return moment().format('mm')
   return time.slice(time.indexOf(':') + 1)
 }
 
