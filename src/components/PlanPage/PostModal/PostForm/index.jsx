@@ -27,8 +27,8 @@ class PostForm extends Component {
     date: moment(this.props.plan.selectedPost.day),
     media: this.props.plan.selectedPost.media || [],
     text: this.props.plan.selectedPost.text || '',
-    hours: getHours(this.props.plan.selectedPost.time) || '00',
-    minutes: getMinutes(this.props.plan.selectedPost.time) || '00',
+    hours: getHours(this.props.plan.selectedPost.time),
+    minutes: getMinutes(this.props.plan.selectedPost.time),
   }
 
   handleDateChange = date => {

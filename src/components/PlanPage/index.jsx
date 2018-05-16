@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import Loader from './Loader'
 import Day from './Day'
 import PostModal from './PostModal'
-import { isObjEmpty } from './utils'
+import { isObjEmpty, reduceToNewState } from './utils'
 
 import './styles.css'
 
@@ -24,33 +24,10 @@ class PlanPage extends Component {
     console.log('woow', params)
     await this.props.updatePost(params)
 
-    const date = params.date.format('YYYY-MM-DD')
-    const prevDate = params.prevDate.format('YYYY-MM-DD')
-    const { text, time, media } = params
-
-    this.setState(prevState => ({
-      data: {
-        ...prevState.data,
-        [prevDate]: {
-          ...(prevState.data[prevDate] || {}),
-          posts: {
-            ...(prevState.data[prevDate] ? prevState.data[prevDate].posts : {}),
-            [params.id]: {},
-          },
-        },
-        [date]: {
-          ...(prevState.data[date] || {}),
-          posts: {
-            ...(prevState.data[date] ? prevState.data[date].posts : {}),
-            [params.id]: {
-              text,
-              time,
-              media,
-            },
-          },
-        },
-      },
-    }))
+    const type = params.id ? 'update' : 'add'
+    this.setState(prevState =>
+      reduceToNewState(prevState, { payload: params, type }),
+    )
     this.setState({ modalIsOpen: false })
   }
 

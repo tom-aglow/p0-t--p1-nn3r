@@ -56,10 +56,12 @@ function mapToCheckboxComponent({ checkedMedia, Component, cb }) {
 }
 
 function getHours(time) {
+  if (time === 'new') return '00'
   return time.slice(0, time.indexOf(':'))
 }
 
 function getMinutes(time) {
+  if (time === 'new') return '00'
   return time.slice(time.indexOf(':') + 1)
 }
 
