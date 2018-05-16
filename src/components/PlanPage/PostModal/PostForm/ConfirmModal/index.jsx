@@ -5,6 +5,11 @@ import './styles.css'
 Modal.setAppElement('#root')
 
 class ConfirmModal extends Component {
+  shouldComponentUpdate(nextProps) {
+    if (this.props.modalIsOpen !== nextProps.modalIsOpen) return true
+    return false
+  }
+
   render() {
     return (
       <div>

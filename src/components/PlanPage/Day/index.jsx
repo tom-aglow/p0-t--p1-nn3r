@@ -41,6 +41,11 @@ class Day extends Component {
     }
   }
 
+  shouldComponentUpdate(nextProps) {
+    if (this.props.posts === nextProps.posts) return false
+    return true
+  }
+
   mapToSlotOrPost = key => {
     const Element = this.state.spots[key].type === 'slot' ? Slot : Post
     return (

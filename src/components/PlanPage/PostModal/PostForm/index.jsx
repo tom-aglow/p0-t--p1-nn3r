@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
 import DatePicker from 'react-datepicker'
 import 'react-datepicker/dist/react-datepicker.css'
@@ -25,7 +25,7 @@ moment.updateLocale('en', {
   },
 })
 
-class PostForm extends Component {
+class PostForm extends PureComponent {
   state = {
     date: moment(this.props.plan.selectedPost.day),
     media: this.props.plan.selectedPost.media || [],

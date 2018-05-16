@@ -7,6 +7,12 @@ class Checkbox extends Component {
     checked: this.props.checked,
   }
 
+  shouldComponentUpdate(nextProps) {
+    if (this.props.checked !== nextProps.checked) return true
+    if (this.props.disabled !== nextProps.disabled) return true
+    return false
+  }
+
   handleClick = () => {
     const { onChange, media, disabled } = this.props
     if (disabled) return null

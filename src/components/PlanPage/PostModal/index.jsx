@@ -10,6 +10,11 @@ import icons from './icons'
 Modal.setAppElement('#root')
 
 class PostModal extends Component {
+  shouldComponentUpdate(nextProps) {
+    if (this.props.modalIsOpen !== nextProps.modalIsOpen) return true
+    return false
+  }
+
   closeModal = () => {
     this.props.onClose()
   }
