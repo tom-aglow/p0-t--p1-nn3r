@@ -4,10 +4,10 @@ import DatePicker from 'react-datepicker'
 import 'react-datepicker/dist/react-datepicker.css'
 import moment from 'moment'
 import { isInThePast } from 'components/PlanPage/utils'
+import Button from 'components/PlanPage/shared/Button'
 
 import withPlanContext from 'components/PlanPage/withPlanContext'
 import Checkbox from './Checkbox'
-import Button from './Button'
 import ConfirmModal from './ConfirmModal'
 import {
   renderHoursOptions,
@@ -191,7 +191,6 @@ class PostForm extends PureComponent {
           onChange={this.handleInputChange}
           placeholder="Text and links"
           disabled={disabled}
-          autoFocus
         />
 
         {/* buttons */}

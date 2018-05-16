@@ -2,51 +2,14 @@
 
 // MODAL
 .ConfirmModal
-  position: absolute
   top: $pm-xl
   width: 400px
   left: calc((100% - 400px) / 2 - #{$pm-md})
-  background-color: $color-fill-lightgrey
-  transform: translateY(-40px)
-  opacity: 0
-  animation: slideIn 300ms forwards 100ms ease-out
-  will-change: transform
   padding: $pm-md
 
-  @media screen and (max-width: calc(400px + 2 * #{$pm-md} + 60px))
+  @media screen and (max-width: $bp-screen-sm)
     width: calc(100% - 2 * (30px + #{$pm-md}))
     left: 30px
-
-
-@keyframes slideIn
-  0%
-    transform: translateY(-40px)
-    opacity: 0
-  100%
-    transform: translateY(0)
-    opacity: 1
-
-
-
-// OVERLAY
-
-.ConfirmModal__Overlay
-  z-index: 30
-  position: fixed
-  top: 0
-  left: 0
-  right: 0
-  bottom: 0
-  background-color: rgba(0, 0, 0, 0.6)
-  animation: fadeIn 100ms forwards
-  overflow: scroll
-
-
-@keyframes fadeIn
-  0%
-    opacity: 0
-  100%
-    opacity: 1
 
 
 // CONTENT

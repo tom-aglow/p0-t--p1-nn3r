@@ -1,9 +1,7 @@
 import React, { Component } from 'react'
-import Modal from 'react-modal'
-import Button from '../Button'
+import Modal from 'components/PlanPage/shared/Modal'
+import Button from 'components/PlanPage/shared/Button'
 import './styles.css'
-
-Modal.setAppElement('#root')
 
 class ConfirmModal extends Component {
   shouldComponentUpdate(nextProps) {
@@ -16,10 +14,9 @@ class ConfirmModal extends Component {
       <div>
         <Modal
           isOpen={this.props.modalIsOpen}
-          onRequestClose={this.props.onClose}
-          contentLabel="Post Modal"
+          onClose={this.props.onClose}
+          label="Confirm Modal"
           className="ConfirmModal"
-          overlayClassName="ConfirmModal__Overlay"
         >
           <p className="ConfirmModal__text">
             Do you really want to delete this post?
