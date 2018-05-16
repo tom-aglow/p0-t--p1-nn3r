@@ -7,11 +7,11 @@ import icons from '../icons'
 import { formatTime } from '../utils'
 import './styles.css'
 
-const Slot = ({ time, text }) => {
+const Slot = ({ time, text, day }) => {
   const isNew = time === 'new'
   const type = isNew ? 'new' : 'slot'
 
-  const options = { type, time }
+  const options = { type, time, day }
 
   return (
     <Tile className="Slot" options={options}>
@@ -29,6 +29,7 @@ const Slot = ({ time, text }) => {
 Slot.propTypes = {
   time: PropTypes.string.isRequired,
   text: PropTypes.string.isRequired,
+  day: PropTypes.string.isRequired,
 }
 
 export default Slot

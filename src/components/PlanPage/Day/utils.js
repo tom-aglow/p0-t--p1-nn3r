@@ -1,4 +1,5 @@
 import moment from 'moment'
+import { isInThePast } from 'components/PlanPage/utils'
 
 const MS_PER_DAY = 1000 * 60 * 60 * 24
 const NUMERALS = ['first', 'second', 'third']
@@ -20,17 +21,20 @@ function formatTime(time) {
 
 function isToday(day) {
   const now = new Date()
-  return dateDiffInDays(now, day) === 0
+  const dayObj = new Date(day)
+  return dateDiffInDays(now, dayObj) === 0
 }
 
 function isTomorrow(day) {
   const now = new Date()
-  return dateDiffInDays(now, day) === 1
+  const dayObj = new Date(day)
+  return dateDiffInDays(now, dayObj) === 1
 }
 
 function isYesterday(day) {
   const now = new Date()
-  return dateDiffInDays(now, day) === -1
+  const dayObj = new Date(day)
+  return dateDiffInDays(now, dayObj) === -1
 }
 
 function dateDiffInDays(a, b) {
@@ -40,10 +44,13 @@ function dateDiffInDays(a, b) {
   return Math.floor((utc2 - utc1) / MS_PER_DAY)
 }
 
-function reduceToSlotsObject(obj, item, index) {
-  return {
-    ...obj,
-    [item]: { type: 'slot', text: `${NUMERALS[index]} slot`, time: item },
+function reduceToSlotsObject(day) {
+  return function reducer(obj, item, index) {
+    if (isInThePast(day, item)) return obj
+    return {
+      ...obj,
+      [item]: { type: 'slot', text: `${NUMERALS[index]} slot`, time: item },
+    }
   }
 }
 
@@ -83,4 +90,5 @@ export {
   formatTime,
   getNewPostObj,
   reduceToTimeKey,
+  isToday,
 }

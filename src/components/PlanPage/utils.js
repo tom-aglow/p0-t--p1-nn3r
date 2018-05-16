@@ -1,3 +1,5 @@
+import moment from 'moment'
+
 function isObjEmpty(obj) {
   return Object.keys(obj).length === 0
 }
@@ -43,4 +45,10 @@ function updateState(prevState, params) {
   }
 }
 
-export { isObjEmpty, reduceToNewState }
+function isInThePast(date = moment().format('YYYY-MM-DD'), time = '00:00') {
+  const selectedDate = moment(`${date} ${time}`)
+  const now = moment()
+  return selectedDate.diff(now) < 0
+}
+
+export { isObjEmpty, reduceToNewState, isInThePast }

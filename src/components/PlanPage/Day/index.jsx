@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { CSSTransition, TransitionGroup } from 'react-transition-group'
 import PropTypes from 'prop-types'
+import { isInThePast } from 'components/PlanPage/utils'
 
 import Stats from './Stats'
 import Post from './Post'
@@ -12,6 +13,7 @@ import {
   sortStringsAsc,
   getNewPostObj,
   reduceToTimeKey,
+  isToday,
 } from './utils'
 import { isObjEmpty } from '../utils'
 import './styles.css'
@@ -23,10 +25,13 @@ class Day extends Component {
 
   static getDerivedStateFromProps(nextProps) {
     if (isObjEmpty(nextProps.posts) || nextProps.slots.length === 0) return null
-    const { posts, slots } = nextProps
+    const { posts, slots, day } = nextProps
+    const isPast = isInThePast(day)
+
     const postsRemapped = Object.keys(posts).reduce(reduceToTimeKey(posts), {})
-    const slotsObj = slots.reduce(reduceToSlotsObject, {})
-    const newPostObj = getNewPostObj()
+    const slotsObj =
+      !isPast || isToday(day) ? slots.reduce(reduceToSlotsObject(day), {}) : {}
+    const newPostObj = !isPast || isToday(day) ? getNewPostObj() : {}
     return {
       spots: {
         ...slotsObj,
@@ -35,8 +40,6 @@ class Day extends Component {
       },
     }
   }
-
-  day = new Date(this.props.day)
 
   mapToSlotOrPost = key => {
     const Element = this.state.spots[key].type === 'slot' ? Slot : Post
@@ -80,13 +83,13 @@ class Day extends Component {
   }
 
   render() {
-    const { stats } = this.props
+    const { stats, day } = this.props
     return (
       <section className="Day">
         <header className="Day__header">
           <div className="Day__title">
-            <h1 className="Day__name">{formatDay(this.day)}</h1>
-            <span className="Day__weekday">{getWeekdayName(this.day)}</span>
+            <h1 className="Day__name">{formatDay(day)}</h1>
+            <span className="Day__weekday">{getWeekdayName(day)}</span>
           </div>
           {stats && <Stats params={stats} />}
         </header>

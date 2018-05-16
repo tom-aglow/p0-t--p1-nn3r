@@ -72,7 +72,7 @@ const data = {
   '2018-05-16': {
     posts: {
       'id-009': {
-        time: '10:00',
+        time: '09:00',
         media: ['facebook', 'twitter'],
         text:
           'Nullam consectetur non leo nec semper. Sed nisi nisl, ullamcorper a velit nec, lobortis egestas enim.',
@@ -103,17 +103,35 @@ const data = {
       },
     },
   },
-  '2018-05-19': {
-    posts: {},
-  },
-  '2018-05-20': {
-    posts: {},
-  },
   '2018-05-17': {
-    posts: {},
+    posts: {
+      'id-011': {
+        time: '17:00',
+        media: ['facebook', 'instagram', 'googleplus'],
+        text:
+          'Duis consequat urna a viverra molestie. Nullam interdum justo risus. Nullam eget quam convallis, molestie ex ac, rhoncus dolor.',
+      },
+    },
   },
   '2018-05-18': {
-    posts: {},
+    posts: {
+      'id-011': {
+        time: '17:00',
+        media: ['facebook', 'instagram', 'googleplus'],
+        text:
+          'Duis consequat urna a viverra molestie. Nullam interdum justo risus. Nullam eget quam convallis, molestie ex ac, rhoncus dolor.',
+      },
+    },
+  },
+  '2018-05-19': {
+    posts: {
+      '00:00': null,
+    },
+  },
+  '2018-05-20': {
+    posts: {
+      '00:00': null,
+    },
   },
 }
 

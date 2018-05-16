@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import DatePicker from 'react-datepicker'
 import 'react-datepicker/dist/react-datepicker.css'
 import moment from 'moment'
+import { isInThePast } from 'components/PlanPage/utils'
 
 import withPlanContext from 'components/PlanPage/withPlanContext'
 import Checkbox from './Checkbox'
@@ -30,6 +31,11 @@ class PostForm extends Component {
     hours: getHours(this.props.plan.selectedPost.time),
     minutes: getMinutes(this.props.plan.selectedPost.time),
   }
+
+  isPast = isInThePast(
+    this.props.plan.selectedPost.day,
+    this.props.plan.selectedPost.time,
+  )
 
   handleDateChange = date => {
     this.setState({ date })
@@ -145,20 +151,22 @@ class PostForm extends Component {
         />
 
         {/* buttons */}
-        <div className="PostForm__buttons">
-          <button
-            className="PostForm__button-save"
-            onClick={this.handleSaveButtonClick}
-          >
-            Schedule Post<div className="bg" />
-          </button>
-          <button
-            className="PostForm__button-delete"
-            onClick={this.handleDeleteButtonClick}
-          >
-            Delete Post
-          </button>
-        </div>
+        {!this.isPast && (
+          <div className="PostForm__buttons">
+            <button
+              className="PostForm__button-save"
+              onClick={this.handleSaveButtonClick}
+            >
+              Schedule Post<div className="bg" />
+            </button>
+            <button
+              className="PostForm__button-delete"
+              onClick={this.handleDeleteButtonClick}
+            >
+              Delete Post
+            </button>
+          </div>
+        )}
       </form>
     )
   }
