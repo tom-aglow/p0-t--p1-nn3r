@@ -8,7 +8,8 @@ $size: 30px
   background-color: $color-fill-darkgrey
   border-radius: 50%
   position: relative
-  display: inline-block
+  display: flex
+  flex-direction: column
   margin-left: calc(50% - #{$size} /2)
   margin-top: calc(50vh - #{$size} /2)
   @media screen and (max-width: $bp-screen-sm)
@@ -31,6 +32,10 @@ $size: 30px
     border-top-color: lighten($color-fill-lightblack, 10%)
     border-bottom-color: lighten($color-fill-lightblack, 10%)
     animation: spinny 1s linear infinite
+
+  span
+    margin-left: -15px
+    margin-top: 45px
 
 @keyframes spinny
   0%

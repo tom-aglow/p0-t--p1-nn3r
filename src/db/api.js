@@ -1,7 +1,7 @@
 /* eslint-disable import/prefer-default-export */
 import data from './data'
 
-const SERVER_RESPONSE_DELAY = 2000
+const SERVER_RESPONSE_DELAY = 100000
 
 function getData() {
   return new Promise(resolve => {

@@ -1,6 +1,10 @@
 import React from 'react'
 import './styles.css'
 
-const Loader = () => <div className="Loader" />
+const Loader = () => (
+  <div className="Loader">
+    <span>Loading...</span>
+  </div>
+)
 
 export default Loader
