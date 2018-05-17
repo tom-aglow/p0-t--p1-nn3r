@@ -57,31 +57,6 @@ class Day extends Component {
     )
   }
 
-  addPost = () => {
-    const d = new Date()
-    const time = `${d.getHours()}:${d.getSeconds()}`
-    const foo = {
-      [time]: {
-        media: ['facebook', 'twitter'],
-        text: 'Bazzz',
-        time,
-        id: '12412',
-      },
-    }
-    this.setState(prevState => ({ spots: { ...prevState.spots, ...foo } }))
-  }
-
-  removePost = () => {
-    const [firstKey] = Object.keys(this.state.spots).sort(sortStringsAsc)
-    const newTiles = Object.keys(this.state.spots).reduce((result, key) => {
-      if (key !== firstKey) {
-        result[key] = this.state.spots[key] // eslint-disable-line no-param-reassign
-      }
-      return result
-    }, {})
-    this.setState({ spots: newTiles })
-  }
-
   renderPosts() {
     return Object.keys(this.state.spots)
       .sort(sortStringsAsc)
@@ -102,8 +77,6 @@ class Day extends Component {
         <TransitionGroup className="Day__content">
           {this.renderPosts()}
         </TransitionGroup>
-        <button onClick={this.addPost}>add</button>
-        <button onClick={this.removePost}>delete</button>
       </section>
     )
   }

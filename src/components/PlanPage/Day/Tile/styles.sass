@@ -21,6 +21,12 @@ $animation-time: 0.4s
     &.hover-end
       animation: fall $animation-time forwards ease-out
 
+  @media screen and (max-width: $bp-screen-sm)
+    width: 140px
+    height: 140px
+    padding: $pm-xs
+    font-size: $font-size-sm
+
 
 @keyframes rise
   0%

@@ -1,42 +1,6 @@
 const data = {
   '2018-05-15': {
     posts: {
-      'id-001': {
-        time: '13:00',
-        media: ['twitter'],
-        text:
-          'Mauris varius tortor in sem laoreet, sed dictum quam finibus. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla arcu enim, malesuada ac interdum eget, cursus vel mi. Suspendisse lacinia nisl tincidunt, tristique metus non, vulputate erat.',
-      },
-      'id-002': {
-        time: '09:02',
-        media: ['facebook', 'twitter'],
-        text:
-          'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla arcu enim, malesuada ac interdum eget, cursus vel mi. Suspendisse lacinia nisl tincidunt, tristique metus non, vulputate erat.',
-      },
-      'id-003': {
-        time: '13:10',
-        media: ['facebook'],
-        text:
-          'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla arcu enim, malesuada ac interdum eget, cursus vel mi. Suspendisse lacinia nisl tincidunt, tristique metus non, vulputate erat.',
-      },
-      'id-004': {
-        time: '13:03',
-        media: ['facebook', 'twitter', 'instagram'],
-        text:
-          'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla arcu enim, malesuada ac interdum eget, cursus vel mi. Suspendisse lacinia nisl tincidunt, tristique metus non, vulputate erat.',
-      },
-      'id-005': {
-        time: '13:04',
-        media: ['twitter', 'googleplus'],
-        text:
-          'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla arcu enim, malesuada ac interdum eget, cursus vel mi. Suspendisse lacinia nisl tincidunt, tristique metus non, vulputate erat.',
-      },
-      'id-006': {
-        time: '13:05',
-        media: ['facebook', 'twitter'],
-        text:
-          'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla arcu enim, malesuada ac interdum eget, cursus vel mi. Suspendisse lacinia nisl tincidunt, tristique metus non, vulputate erat.',
-      },
       'id-007': {
         time: '13:06',
         media: ['facebook', 'twitter', 'googleplus', 'instagram'],
@@ -52,19 +16,19 @@ const data = {
     },
     stats: {
       seen: {
-        value: 420,
+        value: 101,
         rate: 0.35,
       },
       shares: {
-        value: 23,
+        value: 43,
         rate: 0.54,
       },
       likes: {
-        value: 110,
+        value: 57,
         rate: 0.12,
       },
       comments: {
-        value: 7,
+        value: 13,
         rate: 0.9,
       },
     },
@@ -82,6 +46,12 @@ const data = {
         media: ['facebook', 'instagram', 'googleplus'],
         text:
           'Duis consequat urna a viverra molestie. Nullam interdum justo risus. Nullam eget quam convallis, molestie ex ac, rhoncus dolor.',
+      },
+      'id-005': {
+        time: '13:04',
+        media: ['twitter', 'googleplus'],
+        text:
+          'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla arcu enim, malesuada ac interdum eget, cursus vel mi. Suspendisse lacinia nisl tincidunt, tristique metus non, vulputate erat.',
       },
     },
     stats: {
@@ -111,6 +81,30 @@ const data = {
         text:
           'Duis consequat urna a viverra molestie. Nullam interdum justo risus. Nullam eget quam convallis, molestie ex ac, rhoncus dolor.',
       },
+      'id-001': {
+        time: '13:00',
+        media: ['twitter'],
+        text:
+          'Mauris varius tortor in sem laoreet, sed dictum quam finibus. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla arcu enim, malesuada ac interdum eget, cursus vel mi. Suspendisse lacinia nisl tincidunt, tristique metus non, vulputate erat.',
+      },
+    },
+    stats: {
+      seen: {
+        value: 120,
+        rate: 0.76,
+      },
+      shares: {
+        value: 55,
+        rate: 0.8,
+      },
+      likes: {
+        value: 250,
+        rate: 0.3,
+      },
+      comments: {
+        value: 32,
+        rate: 0.55,
+      },
     },
   },
   '2018-05-18': {
@@ -121,14 +115,41 @@ const data = {
         text:
           'Duis consequat urna a viverra molestie. Nullam interdum justo risus. Nullam eget quam convallis, molestie ex ac, rhoncus dolor.',
       },
+      'id-004': {
+        time: '13:03',
+        media: ['facebook', 'twitter', 'instagram'],
+        text:
+          'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla arcu enim, malesuada ac interdum eget, cursus vel mi. Suspendisse lacinia nisl tincidunt, tristique metus non, vulputate erat.',
+      },
     },
   },
   '2018-05-19': {
     posts: {
-      '00:00': null,
+      'id-003': {
+        time: '13:10',
+        media: ['facebook'],
+        text:
+          'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla arcu enim, malesuada ac interdum eget, cursus vel mi. Suspendisse lacinia nisl tincidunt, tristique metus non, vulputate erat.',
+      },
+      'id-006': {
+        time: '13:05',
+        media: ['facebook', 'twitter'],
+        text:
+          'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla arcu enim, malesuada ac interdum eget, cursus vel mi. Suspendisse lacinia nisl tincidunt, tristique metus non, vulputate erat.',
+      },
     },
   },
   '2018-05-20': {
+    posts: {
+      'id-002': {
+        time: '09:02',
+        media: ['facebook', 'twitter'],
+        text:
+          'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla arcu enim, malesuada ac interdum eget, cursus vel mi. Suspendisse lacinia nisl tincidunt, tristique metus non, vulputate erat.',
+      },
+    },
+  },
+  '2018-05-21': {
     posts: {
       '00:00': null,
     },
