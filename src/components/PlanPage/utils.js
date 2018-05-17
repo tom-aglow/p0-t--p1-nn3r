@@ -10,11 +10,14 @@ function reduceToNewState(prevState, { payload, type }) {
 
   switch (type) {
     case 'update': {
-      const clearPrevDate = updateState(prevState, {
-        date: prevDate,
-        id,
-        obj: null,
-      })
+      const clearPrevDate =
+        date !== prevDate
+          ? updateState(prevState, {
+              date: prevDate,
+              id,
+              obj: null,
+            })
+          : prevState
       return updateState(clearPrevDate, { date, id, obj })
     }
     case 'add': {
