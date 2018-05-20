@@ -4,7 +4,7 @@ function isObjEmpty(obj) {
   return Object.keys(obj).length === 0
 }
 
-function reduceToNewState(prevState, { payload, type }) {
+function reduceToNewDataState(prevState, { payload, type }) {
   const { text, time, media, date, id, prevDate } = payload
   const obj = { text, time, media }
 
@@ -55,4 +55,4 @@ function isInThePast(date = moment().format('YYYY-MM-DD'), time = '00:00') {
   return selectedDate.diff(now) < 0
 }
 
-export { isObjEmpty, reduceToNewState, isInThePast }
+export { isObjEmpty, reduceToNewDataState, isInThePast }

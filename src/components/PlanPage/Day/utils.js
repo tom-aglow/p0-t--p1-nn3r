@@ -75,6 +75,7 @@ function reduceToTimeKey(posts) {
     const obj = {
       [posts[key].time]: {
         id: key,
+        type: 'post',
         ...posts[key],
       },
     }

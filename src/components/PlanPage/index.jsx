@@ -4,7 +4,7 @@ import PropTypes from 'prop-types'
 import Loader from './Loader'
 import Day from './Day'
 import PostModal from './PostModal'
-import { isObjEmpty, reduceToNewState } from './utils'
+import { isObjEmpty, reduceToNewDataState } from './utils'
 
 import './styles.css'
 
@@ -24,7 +24,9 @@ class PlanPage extends Component {
   onPostUpdate = async params => {
     const { type, ...payload } = params
     this.setState({ modalIsOpen: false }, () => {
-      this.setState(prevState => reduceToNewState(prevState, { payload, type }))
+      this.setState(prevState =>
+        reduceToNewDataState(prevState, { payload, type }),
+      )
     })
   }
 

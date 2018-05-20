@@ -18,6 +18,8 @@ import {
 import { isObjEmpty } from '../utils'
 import './styles.css'
 
+const LIST_ITEM_DELETE_TIME = 500
+
 class Day extends Component {
   state = {
     spots: {},
@@ -46,11 +48,24 @@ class Day extends Component {
     return true
   }
 
+  onPostEntering = node => {
+    setTimeout(() => {
+      node.scrollIntoView({ behavior: 'smooth' })
+      node.classList.add('tile-enter-custom')
+    }, LIST_ITEM_DELETE_TIME)
+  }
+
   mapToSlotOrPost = key => {
-    const Element = this.state.spots[key].type === 'slot' ? Slot : Post
+    const { type } = this.state.spots[key]
+    const Element = type === 'slot' ? Slot : Post
     return (
       this.state.spots[key].time && (
-        <CSSTransition key={key} timeout={1000} classNames="tile">
+        <CSSTransition
+          key={key}
+          timeout={LIST_ITEM_DELETE_TIME}
+          classNames="tile"
+          onEnter={this.onPostEntering}
+        >
           <Element {...this.state.spots[key]} key={key} day={this.props.day} />
         </CSSTransition>
       )
