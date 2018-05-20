@@ -24,13 +24,18 @@ class Tile extends Component {
     })
   }
 
+  handleMouseEnter = () => {
+    this.setState({ modClass: '' })
+  }
+
   render() {
     const { children, className } = this.props
     return (
       <article
-        className={`Tile ${className} ${this.state.modClass}`}
+        className={`Tile ${this.state.modClass} ${className}`}
         onClick={this.handleClick}
         onMouseLeave={this.handleMouseLeave}
+        onMouseEnter={this.handleMouseEnter}
         role="button"
       >
         {children()}

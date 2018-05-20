@@ -18,6 +18,7 @@ import { isObjEmpty, sortStringsAsc } from '../utils'
 import './styles.css'
 
 const LIST_ITEM_DELETE_TIME = 500
+const LIST_ITEM_ANIMATE_TIME = 3000
 
 class Day extends Component {
   state = {
@@ -51,6 +52,11 @@ class Day extends Component {
     setTimeout(() => {
       node.scrollIntoView({ behavior: 'smooth' })
       node.classList.add('tile-enter-custom')
+
+      setTimeout(() => {
+        node.classList.remove('tile-enter-custom')
+        node.classList.add('tile-enter-done-custom')
+      }, LIST_ITEM_ANIMATE_TIME)
     }, LIST_ITEM_DELETE_TIME)
   }
 

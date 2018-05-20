@@ -27,6 +27,9 @@ class PlanPage extends Component {
       this.setState(prevState =>
         reduceToNewDataState(prevState, { payload, type }),
       )
+      this.setState(prevState => ({
+        context: { ...prevState.context, updatedPost: payload },
+      }))
     })
   }
 
@@ -35,6 +38,7 @@ class PlanPage extends Component {
       onTileClick: this.onTileClick,
       onPostUpdate: this.onPostUpdate,
       selectedPost: {},
+      updatedPost: {},
       api: this.props.api,
     },
     modalIsOpen: false,
