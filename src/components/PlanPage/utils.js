@@ -55,4 +55,8 @@ function isInThePast(date = moment().format('YYYY-MM-DD'), time = '00:00') {
   return selectedDate.diff(now) < 0
 }
 
-export { isObjEmpty, reduceToNewDataState, isInThePast }
+function sortStringsAsc(a, b) {
+  return a.localeCompare(b)
+}
+
+export { isObjEmpty, reduceToNewDataState, isInThePast, sortStringsAsc }

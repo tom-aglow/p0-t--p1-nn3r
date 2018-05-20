@@ -10,12 +10,11 @@ import {
   getWeekdayName,
   formatDay,
   reduceToSlotsObject,
-  sortStringsAsc,
   getNewPostObj,
   reduceToTimeKey,
   isToday,
 } from './utils'
-import { isObjEmpty } from '../utils'
+import { isObjEmpty, sortStringsAsc } from '../utils'
 import './styles.css'
 
 const LIST_ITEM_DELETE_TIME = 500

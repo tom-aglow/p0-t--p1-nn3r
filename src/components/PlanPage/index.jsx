@@ -4,7 +4,7 @@ import PropTypes from 'prop-types'
 import Loader from './Loader'
 import Day from './Day'
 import PostModal from './PostModal'
-import { isObjEmpty, reduceToNewDataState } from './utils'
+import { isObjEmpty, reduceToNewDataState, sortStringsAsc } from './utils'
 
 import './styles.css'
 
@@ -64,7 +64,9 @@ class PlanPage extends Component {
       />
     )
 
-    return Object.keys(data).map(mapToDayComponent)
+    return Object.keys(data)
+      .sort(sortStringsAsc)
+      .map(mapToDayComponent)
   }
 
   render() {

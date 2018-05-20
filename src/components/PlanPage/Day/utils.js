@@ -64,10 +64,6 @@ function getNewPostObj() {
   }
 }
 
-function sortStringsAsc(a, b) {
-  return a.localeCompare(b)
-}
-
 function reduceToTimeKey(posts) {
   return function reducer(accObj, key) {
     if (!posts[key]) return accObj
@@ -87,7 +83,6 @@ export {
   getWeekdayName,
   formatDay,
   reduceToSlotsObject,
-  sortStringsAsc,
   formatTime,
   getNewPostObj,
   reduceToTimeKey,
